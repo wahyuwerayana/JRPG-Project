@@ -1,0 +1,11 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/USS/styles.uss?fileID=7433441132597879392&amp;guid=2e022ce16212ec54998fde3fde55dd40&amp;type=3#styles"/>
+    <ui:VisualElement name="MainContainer" class="container">
+        <ui:Label text="Deadline Dungeon" name="GameTitle" style="font-size: 50%; -unity-font-style: bold; color: rgb(116, 73, 2); -unity-text-outline-width: 0; letter-spacing: 5px; word-spacing: 0; -unity-font-definition: url(&quot;project://database/Assets/Plugins/Fungus/Fonts/Amaranth/Amaranth-Regular.otf?fileID=12800000&amp;guid=bb145366ce7024469a5758b08d31802c&amp;type=3#Amaranth-Regular&quot;); -unity-text-align: middle-left; width: 100%;"/>
+        <ui:VisualElement name="ButtonContainer" style="flex-grow: 1; width: 25%; align-items: stretch; align-content: auto; flex-direction: column; align-self: auto; flex-basis: auto; flex-wrap: nowrap; justify-content: flex-end;">
+            <ui:Button text="Play" name="PlayButton" class="menu-button"/>
+            <ui:Button text="Settings" name="SettingsButton" class="menu-button"/>
+            <ui:Button text="Quit" name="QuitButton" class="menu-button"/>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
