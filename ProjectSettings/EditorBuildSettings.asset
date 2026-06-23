@@ -8,6 +8,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 2910f27c3218ae347ac3bacb5e3bd825
+  - enabled: 1
+    path: Assets/Scenes/Office.unity
+    guid: e996992a360541c4faa157aaea60bc14
+  - enabled: 1
+    path: Assets/Scenes/Dungeon.unity
+    guid: c6e371a8736fa0243812147aaf1bf92d
+  - enabled: 1
+    path: Assets/Scenes/Battle Scene.unity
+    guid: ae7cdd95e2a587a4ebfbc61c6b7fde60
+  - enabled: 1
+    path: Assets/Scenes/CEO Office.unity
+    guid: d1d534533e23f7046bfbd56ff130ac21
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 37f2520d4086d9c4085111eb3ca69a5f, type: 2}
