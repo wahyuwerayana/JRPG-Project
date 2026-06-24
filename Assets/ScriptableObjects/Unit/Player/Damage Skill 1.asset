@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23624b52ac184cdba80b1ea34ee4a2f4, type: 3}
-  m_Name: Skill 1
-  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.SkillSO
-  SkillName: 
-  SkillDamage: 0
+  m_Script: {fileID: 11500000, guid: 0fee5b3b4db844d297c6245de42d91fc, type: 3}
+  m_Name: Damage Skill 1
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.DamageSkillSO
+  Name: 
+  Description: 
   MPCost: 0
+  AnimationTrigger: 
+  Damage: 0

@@ -18,4 +18,5 @@ MonoBehaviour:
   Attack: 10
   MP: 0
   Defense: 5
-  Skills: []
+  Skills:
+  - {fileID: 0}

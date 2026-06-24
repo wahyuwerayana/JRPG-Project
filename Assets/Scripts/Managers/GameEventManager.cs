@@ -1,6 +1,5 @@
 using Game.Events;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Game.Managers {
     public class GameEventManager : MonoBehaviour {

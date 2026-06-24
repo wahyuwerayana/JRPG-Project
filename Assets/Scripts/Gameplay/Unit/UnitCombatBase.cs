@@ -4,51 +4,51 @@ using UnityEngine;
 
 namespace Game.Gameplay {
     public abstract class UnitCombatBase : MonoBehaviour, IDamagable {
-        [field: SerializeField] public UnitSO Stats { get; private set; }
+        [field: SerializeField] public UnitDataSO Stats { get; private set; }
         
-        private float CurrentHealth;
-        private float CurrentMP;
+        private float currentHealth;
+        private float currentMP;
 
         private void Awake() {
-            CurrentHealth = Stats.Health;
-            CurrentMP = Stats.MP;
+            currentHealth = Stats.Health;
+            currentMP = Stats.MP;
         }
 
-        public virtual void UseSkill(SkillSO skill) {
-            if (skill == null) {
+        public virtual void UseSkill(SkillDataSO skillData) {
+            if (skillData == null) {
                 Debug.LogWarning("Skill is null");
                 return;
             }
 
-            if (CurrentMP < skill.MPCost) {
+            if (currentMP < skillData.MPCost) {
                 Debug.LogWarning("Not enough MP to use skill");
                 return;
             }
 
-            if (CurrentHealth <= 0) {
+            if (currentHealth <= 0) {
                 Debug.LogWarning("Unit is dead");
                 return;
             }
 
-            CurrentMP -= skill.MPCost;
+            currentMP -= skillData.MPCost;
         }
         
         public virtual void TakeDamage(float attack) {
             float actualDamage = CombatUtils.CalculateDamage(attack, Stats.Defense);
             
-            CurrentHealth = Mathf.Max(0, CurrentHealth - actualDamage);
+            currentHealth = Mathf.Max(0, currentHealth - actualDamage);
             
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitDamaged(this, CurrentHealth, actualDamage);
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitDamaged(this, currentHealth, actualDamage);
             
-            if (CurrentHealth <= 0) {
+            if (currentHealth <= 0) {
                 Die();
             }
         }
         
         public virtual void Heal(float healedAmount) {
-            CurrentHealth = Mathf.Min(Stats.Health, CurrentHealth + healedAmount);
+            currentHealth = Mathf.Min(Stats.Health, currentHealth + healedAmount);
             
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitHealed(this, CurrentHealth, healedAmount);
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitHealed(this, currentHealth, healedAmount);
         }
 
         protected virtual void Die() {

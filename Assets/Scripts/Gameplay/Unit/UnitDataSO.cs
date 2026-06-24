@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Gameplay {
     [CreateAssetMenu(fileName = "New Unit", menuName = "Scriptable Object/Gameplay/Unit")]
-    public class UnitSO : ScriptableObject {
+    public class UnitDataSO : ScriptableObject {
         [Header("General")]
         public string Name;
         
@@ -14,7 +14,7 @@ namespace Game.Gameplay {
         public float Attack;
         public float MP;
         public float Defense;
-        public SkillSO[] Skills;
+        public SkillDataSO[] Skills;
 
         private void OnValidate() {
             name = name.Trim();
