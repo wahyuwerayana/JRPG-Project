@@ -3,6 +3,7 @@ using Game.Utils;
 using UnityEngine;
 
 namespace Game.Gameplay {
+    [RequireComponent(typeof(UnitDataContainer))]
     public abstract class UnitCombatBase : MonoBehaviour, IDamagable {
         [field: SerializeField] public UnitDataSO Stats { get; private set; }
         

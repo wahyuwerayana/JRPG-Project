@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using static Game.Settings.MainInput;
 
 namespace Game.Settings {
     public interface IInputReader {
@@ -10,7 +11,7 @@ namespace Game.Settings {
     }
     
     [CreateAssetMenu(fileName = "New Input Reader", menuName = "Scriptable Object/Input/Input Reader")]
-    public class InputReader : ScriptableObject, MainInput.IPlayerActions, IInputReader {
+    public class InputReader : ScriptableObject, IPlayerActions, IInputReader {
         public event UnityAction<Vector2> Move = delegate { };
         public event UnityAction Interact = delegate { };
 
@@ -28,18 +29,18 @@ namespace Game.Settings {
         }
         
         public void DisablePlayerActions() {
-            inputActions.Player.Disable();
+            inputActions?.Player.Disable();
         }
         
         public void OnMove(InputAction.CallbackContext context) {
-            Move.Invoke(context.ReadValue<Vector2>());
+            Move?.Invoke(context.ReadValue<Vector2>());
         }
         
         public void OnInteract(InputAction.CallbackContext context) {
             if (!context.performed)
                 return;
             
-            Interact.Invoke();
+            Interact?.Invoke();
         }
     }
 }
