@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1870ef89f144679bccc1d0d9801bbcc, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.UnitSO
-  Name: Player
-  MoveSpeed: 3
-  Health: 100
-  Attack: 10
-  MP: 0
-  Defense: 5
-  Skills:
-  - {fileID: 0}
+  <Name>k__BackingField: Player
+  <MoveSpeed>k__BackingField: 3
+  <RotationSpeed>k__BackingField: 10
+  <Health>k__BackingField: 0
+  <Attack>k__BackingField: 0
+  <MP>k__BackingField: 0
+  <Defense>k__BackingField: 0
+  Skills: []

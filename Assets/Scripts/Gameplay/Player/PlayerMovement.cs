@@ -10,12 +10,12 @@ namespace Game.Gameplay {
         private UnitDataSO playerData;
         private Vector2 currentDirection;
         private CharacterController characterController;
-        private Camera mainCamera;
+        private Transform mainCameraTransform;
 
         private void Awake() {
             playerData = GetComponent<UnitDataContainer>().UnitData;
             characterController = GetComponent<CharacterController>();
-            mainCamera = Camera.main;
+            mainCameraTransform = Camera.main?.transform;
         }
 
         private void OnEnable() {
@@ -35,12 +35,25 @@ namespace Game.Gameplay {
         }
 
         private void Move() {
+            if(!characterController.isGrounded)
+                characterController.Move(Physics.gravity * Time.deltaTime);
+            
             if (currentDirection == Vector2.zero) 
                 return;
             
-            Vector3 direction = new Vector3(currentDirection.x, 0f, currentDirection.y).normalized;
+            Vector3 cameraForward = mainCameraTransform.forward;
+            Vector3 cameraRight = mainCameraTransform.right;
+            cameraForward.y = 0f;
+            cameraRight.y = 0f;
+            cameraForward.Normalize();
+            cameraRight.Normalize();
             
-            characterController.Move(direction * (playerData.MoveSpeed * Time.deltaTime));
+            Vector3 moveDirection = cameraForward * currentDirection.y + cameraRight * currentDirection.x;
+            
+            characterController.Move(moveDirection * (playerData.MoveSpeed * Time.deltaTime));
+            
+            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, playerData.RotationSpeed * Time.deltaTime);
         }
     }
 }
