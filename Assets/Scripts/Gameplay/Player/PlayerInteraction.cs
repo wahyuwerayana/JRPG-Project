@@ -7,7 +7,7 @@ namespace Game.Gameplay {
     public class PlayerInteraction : MonoBehaviour {
         [SerializeField] private PlayerInputReader inputReader;
         
-        private List<IInteractable> interactablesInRange = new List<IInteractable>();
+        private readonly List<IInteractable> interactablesInRange = new List<IInteractable>();
         
         private void OnEnable() {
             inputReader.Interact += TryInteract;

@@ -66,8 +66,13 @@ namespace Fungus.EditorUtils
 
             var targetBlock = target as Block;
 
+        #if UNITY_6000
             var callers = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None)
-                .OfType<IBlockCaller>()
+        #else
+            var callers = FindObjectsOfType<MonoBehaviour>()
+        #endif
+                .Where(x => x is IBlockCaller)
+                .Select(x => x as IBlockCaller)
                 .Where(x => x.MayCallBlock(targetBlock))
                 .Select(x => x.GetLocationIdentifier()).ToArray();
 
@@ -181,6 +186,9 @@ namespace Fungus.EditorUtils
                     }
                     command.ParentBlock = block;
                 }
+
+
+                EditorGUILayout.Space();
 
                 commandListAdaptor.DrawCommandList();
 
@@ -314,14 +322,18 @@ namespace Fungus.EditorUtils
 
 
             // Previous Command
-            if ((Event.current.type == EventType.KeyDown) && (Event.current.keyCode == KeyCode.PageUp))
+            if (Event.current.type == EventType.KeyDown && (
+                  Event.current.keyCode == KeyCode.PageUp ||
+                  (FungusEditorPreferences.navigateCmdListWithArrows && Event.current.keyCode == KeyCode.UpArrow)))
             {
                 SelectPrevious();
                 GUI.FocusControl("dummycontrol");
                 Event.current.Use();
             }
             // Next Command
-            if ((Event.current.type == EventType.KeyDown) && (Event.current.keyCode == KeyCode.PageDown))
+            if (Event.current.type == EventType.KeyDown && (
+                  Event.current.keyCode == KeyCode.PageDown ||
+                  (FungusEditorPreferences.navigateCmdListWithArrows && Event.current.keyCode == KeyCode.DownArrow)))
             {
                 SelectNext();
                 GUI.FocusControl("dummycontrol");

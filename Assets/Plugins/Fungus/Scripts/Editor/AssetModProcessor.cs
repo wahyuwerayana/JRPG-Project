@@ -2,7 +2,6 @@
 // It is released for free under the MIT open source license (https://github.com/snozbot/fungus/blob/master/LICENSE)
 
 using System.IO;
-using UnityEngine;
 
 namespace Fungus.EditorUtils
 {
@@ -29,7 +28,11 @@ namespace Fungus.EditorUtils
             }
 
             // Reset these variables before save so that they won't cause a git conflict
-            Flowchart[] flowcharts = UnityEngine.Object.FindObjectsByType<Flowchart>(FindObjectsSortMode.None);
+        #if UNITY_6000
+            Flowchart[] flowcharts = UnityEngine.Object.FindObjectsByType<Flowchart>(UnityEngine.FindObjectsSortMode.None);
+        #else
+            Flowchart[] flowcharts = UnityEngine.Object.FindObjectsOfType<Flowchart>();
+        #endif
             foreach (Flowchart f in flowcharts)
             {
                 if (!f.SaveSelection)
