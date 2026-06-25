@@ -42,7 +42,7 @@ namespace Game.Gameplay {
             
             if (!interactablesInRange.Contains(interactable))
                 return;
-            
+
             interactablesInRange.Remove(interactable);
         }
         
