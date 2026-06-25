@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.Managers;
 using Game.Settings;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace Game.Gameplay {
     public class PlayerInteraction : MonoBehaviour {
         [SerializeField] private PlayerInputReader inputReader;
         
-        private readonly Collider[] hitColliders = new Collider[1];
+        private List<IInteractable> interactablesInRange = new List<IInteractable>();
         
         private void OnEnable() {
             inputReader.Interact += TryInteract;
@@ -17,23 +18,51 @@ namespace Game.Gameplay {
         }
 
         private void TryInteract() {
-            Physics.OverlapSphereNonAlloc(transform.position, 2f, hitColliders);
-
-            if (hitColliders[0] == null)
+            if(interactablesInRange.Count == 0)
                 return;
 
-            if (hitColliders[0].TryGetComponent<IInteractable>(out IInteractable interactable)) {
-                interactable.Interact();
-                GameEventManager.Instance.PlayerEvent.RaiseOnInteractStarted(interactable);
-            }
+            IInteractable closestInteractable = GetClosestInteractable();
+            closestInteractable?.Interact();
+            GameEventManager.Instance.PlayerEvent.RaiseOnInteractStarted(closestInteractable);
         }
 
         private void OnTriggerEnter(Collider other) {
-            Debug.Log($"Player entered trigger with {other.gameObject.name}");
+            if (!other.TryGetComponent<IInteractable>(out IInteractable interactable))
+                return;
+            
+            if (interactablesInRange.Contains(interactable))
+                return;
+            
+            interactablesInRange.Add(interactable);
+        }
+
+        private void OnTriggerExit(Collider other) {
+            if (!other.TryGetComponent<IInteractable>(out IInteractable interactable))
+                return;
+            
+            if (!interactablesInRange.Contains(interactable))
+                return;
+            
+            interactablesInRange.Remove(interactable);
         }
         
-        private void OnTriggerExit(Collider other) {
-            Debug.Log($"Player exited trigger with {other.gameObject.name}");
+        private IInteractable GetClosestInteractable() {
+            IInteractable closestInteractable = null;
+            float closestDistance = float.MaxValue;
+            Vector3 playerPosition = transform.position;
+
+            foreach (IInteractable interactable in interactablesInRange) {
+                if(interactable is not MonoBehaviour interactableMB)
+                    continue;
+                
+                float distance = Vector3.SqrMagnitude(playerPosition - interactableMB.transform.position);
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestInteractable = interactable;
+                }
+            }
+
+            return closestInteractable;
         }
     }
 }
