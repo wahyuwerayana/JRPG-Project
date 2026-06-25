@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 982773159457187501}
   - component: {fileID: 7219154895613457947}
   - component: {fileID: 7685964286768941757}
+  - component: {fileID: 2328302249842490613}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -45,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d6fb920c15442bb56a98fa206ffaaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Managers.GameEventManager
-  <Input>k__BackingField: {fileID: 11400000, guid: 9b75d83b6b143c74aa33c4140d268f2f, type: 2}
 --- !u!114 &7685964286768941757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,3 +58,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b4d6f94ac6f19a43a65ede3592ddfad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneLoader
+--- !u!114 &2328302249842490613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8663395482827760252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c27ac04f57748b5bbbeb6b5a2a683e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Managers.InputManager
+  playerInputReader: {fileID: 11400000, guid: 9b75d83b6b143c74aa33c4140d268f2f, type: 2}

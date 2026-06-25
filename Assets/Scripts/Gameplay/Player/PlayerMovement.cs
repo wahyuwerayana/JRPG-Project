@@ -1,10 +1,12 @@
-using Game.Managers;
+using Game.Settings;
 using UnityEngine;
 
 namespace Game.Gameplay {
     [RequireComponent(typeof(UnitDataContainer))]
     [RequireComponent(typeof(CharacterController))]
     public class PlayerMovement : MonoBehaviour {
+        [SerializeField] private PlayerInputReader inputReader;
+        
         private UnitDataSO playerData;
         private Vector2 currentDirection;
         private CharacterController characterController;
@@ -17,11 +19,11 @@ namespace Game.Gameplay {
         }
 
         private void OnEnable() {
-            GameEventManager.Instance.PlayerEvent.OnMove += ReadMoveInput;
+            inputReader.Move += ReadMoveInput;
         }
         
         private void OnDisable() {
-            GameEventManager.Instance.PlayerEvent.OnMove -= ReadMoveInput;
+            inputReader.Move -= ReadMoveInput;
         }
 
         private void ReadMoveInput(Vector2 direction) {
