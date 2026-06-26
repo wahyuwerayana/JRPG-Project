@@ -15,7 +15,8 @@ namespace Game.Gameplay {
         [field: SerializeField] public float Attack { get; private set; }
         [field: SerializeField] public float MP { get; private set; }
         [field: SerializeField] public float Defense { get; private set; }
-        [field: SerializeField] public SkillDataSO[] Skills;
+        [SerializeField] public SkillDataSO BasicAttack;
+        [SerializeField] public SkillDataSO[] Skills;
 
         private void OnValidate() {
             name = name.Trim();

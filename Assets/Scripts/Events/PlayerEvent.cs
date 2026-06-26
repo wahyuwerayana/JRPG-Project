@@ -6,7 +6,8 @@ using UnityEngine.InputSystem;
 namespace Game.Events
 {
     public class PlayerEvent {
-        public event UnityAction<Vector2> OnMove;
+        public event UnityAction OnMoveStarted;
+        public event UnityAction OnMoveEnded;
         
         /// <summary>
         /// Raised when the player successfully interacted to an IInteractable object
@@ -26,8 +27,12 @@ namespace Game.Events
             OnInteractEnded?.Invoke(interactable);
         }
         
-        public void RaiseOnMove(InputAction.CallbackContext context) {
-            OnMove?.Invoke(context.ReadValue<Vector2>());
+        public void RaiseOnMoveStarted() {
+            OnMoveStarted?.Invoke();
+        }
+        
+        public void RaiseOnMoveEnded() {
+            OnMoveEnded?.Invoke();
         }
     }
 }

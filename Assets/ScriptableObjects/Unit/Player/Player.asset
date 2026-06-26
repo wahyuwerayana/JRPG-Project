@@ -19,4 +19,5 @@ MonoBehaviour:
   <Attack>k__BackingField: 0
   <MP>k__BackingField: 0
   <Defense>k__BackingField: 0
-  Skills: []
+  Skills:
+  - {fileID: 11400000, guid: 00b3c96a2269f6f488975ae6919302fd, type: 2}

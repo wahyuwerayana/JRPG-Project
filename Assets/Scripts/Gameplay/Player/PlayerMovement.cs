@@ -13,7 +13,7 @@ namespace Game.Gameplay {
         private Transform mainCameraTransform;
 
         private void Awake() {
-            playerData = GetComponent<UnitDataContainer>().UnitData;
+            playerData = GetComponent<UnitDataContainer>().Data;
             characterController = GetComponent<CharacterController>();
             mainCameraTransform = Camera.main?.transform;
         }

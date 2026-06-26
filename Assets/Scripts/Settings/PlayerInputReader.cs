@@ -1,3 +1,4 @@
+using Game.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -12,7 +13,7 @@ namespace Game.Settings {
     [CreateAssetMenu(fileName = "New Input Reader", menuName = "Scriptable Object/Input/Input Reader")]
     public class PlayerInputReader : ScriptableObject, IPlayerActions, IInputReader {
         /// <summary>
-        /// Raised when the player press the move button on the controller they are using
+        /// Raised when the player used the move button on the controller they are using
         /// </summary>
         public event UnityAction<Vector2> Move = delegate { };
         
