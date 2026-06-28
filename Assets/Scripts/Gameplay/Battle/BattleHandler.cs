@@ -25,8 +25,22 @@ namespace Game.Gameplay {
             GameEventManager.Instance.BattleEvent.RaiseOnStart();
         }
         
-        private void EndBattle() {
+        private void EndBattle(bool isWin) {
+            if(isWin) {
+                state = BattleState.Win;
+                GameEventManager.Instance.BattleEvent.RaiseOnWin();
+            } else {
+                state = BattleState.Lose;
+                GameEventManager.Instance.BattleEvent.RaiseOnLose();
+            }
+            
             GameEventManager.Instance.BattleEvent.RaiseOnEnd();
+        }
+
+        private void HandleStateChange(BattleState nextState) {
+            state = nextState;
+            
+            
         }
     }
 }

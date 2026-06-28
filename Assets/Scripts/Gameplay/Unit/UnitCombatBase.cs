@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Gameplay {
     [RequireComponent(typeof(UnitDataContainer))]
-    public abstract class UnitCombatBase : MonoBehaviour, IDamagable {                      
+    public abstract class UnitCombatBase : MonoBehaviour, IDamageable {                      
         public UnitDataSO Stats { get; private set; }
         private float currentHealth;
         private float currentMP;

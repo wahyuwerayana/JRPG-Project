@@ -31,13 +31,11 @@ namespace Game.Gameplay {
         }
 
         private void Update() {
+            ApplyGravity();
             Move();
         }
 
         private void Move() {
-            if(!characterController.isGrounded)
-                characterController.Move(Physics.gravity * Time.deltaTime);
-            
             if (currentDirection == Vector2.zero) 
                 return;
             
@@ -54,6 +52,11 @@ namespace Game.Gameplay {
             
             Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, playerData.RotationSpeed * Time.deltaTime);
+        }
+        
+        private void ApplyGravity() {
+            if(!characterController.isGrounded)
+                characterController.Move(Physics.gravity * Time.deltaTime);
         }
     }
 }

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Text;
-using UnityEngine;
 using UnityEngine.LowLevel;
 
 namespace Game.Utils {
@@ -64,8 +63,6 @@ namespace Game.Utils {
             foreach(PlayerLoopSystem subSystem in playerLoop.subSystemList) {
                 PrintSubsystem(subSystem, sb, 0);
             }
-            
-            Debug.Log(sb.ToString());
         }
 
         static void PrintSubsystem(PlayerLoopSystem system, StringBuilder sb, int level) {

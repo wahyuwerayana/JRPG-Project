@@ -22,7 +22,7 @@ namespace Game.Gameplay {
                 return;
 
             IInteractable closestInteractable = GetClosestInteractable();
-            closestInteractable?.Interact();
+            closestInteractable.Interact();
             GameEventManager.Instance.PlayerEvent.RaiseOnInteractStarted(closestInteractable);
         }
 
