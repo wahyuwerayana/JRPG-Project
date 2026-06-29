@@ -1,3 +1,7 @@
 namespace Game.Gameplay {
-    public class PlayerCombat : UnitCombatBase { }
+    public class PlayerCombat : UnitCombatBase {
+        public void TryRun() {
+            
+        }
+    }
 }

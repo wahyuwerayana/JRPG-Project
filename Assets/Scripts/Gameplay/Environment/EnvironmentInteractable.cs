@@ -7,7 +7,7 @@ namespace Gameplay.Environment {
         [SerializeField] private SceneReference sceneToLoad;
         
         public void Interact() {
-            SceneController.Instance.LoadSceneAsync(sceneToLoad);
+            SceneController.LoadScene(sceneToLoad);
         }
     }
 }

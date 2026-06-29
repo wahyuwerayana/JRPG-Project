@@ -11,10 +11,13 @@ namespace Game.Gameplay {
         
         private void OnEnable() {
             inputReader.Interact += TryInteract;
+
+            GameEventManager.Instance.PlayerEvent.OnInteractStarted += OnInteractStarted;
         }
         
         private void OnDisable() {
             inputReader.Interact -= TryInteract;
+            GameEventManager.Instance.PlayerEvent.OnInteractStarted -= OnInteractStarted;
         }
 
         private void TryInteract() {
@@ -23,6 +26,7 @@ namespace Game.Gameplay {
 
             IInteractable closestInteractable = GetClosestInteractable();
             closestInteractable.Interact();
+            InputManager.Instance.SetPlayerInput(false);
             GameEventManager.Instance.PlayerEvent.RaiseOnInteractStarted(closestInteractable);
         }
 
@@ -63,6 +67,10 @@ namespace Game.Gameplay {
             }
 
             return closestInteractable;
+        }
+
+        private void OnInteractStarted(IInteractable interactable) {
+            InputManager.Instance.SetPlayerInput(false);
         }
     }
 }

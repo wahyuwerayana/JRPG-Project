@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ui:UXML
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ui="UnityEngine.UIElements"
-    xmlns:uie="UnityEditor.UIElements"
-    xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
->
-    
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="UnitStats" src="project://database/Assets/UI%20Toolkit/Game/UnitStats.uxml?fileID=9197481963319205126&amp;guid=4fee127b2c18a6c45941b59aa98ea568&amp;type=3#UnitStats"/>
+    <Style src="project://database/Assets/UI%20Toolkit/USS/battle.uss?fileID=7433441132597879392&amp;guid=3fa0cbf56987632418a295c56f363bd5&amp;type=3#battle"/>
+    <ui:VisualElement class="main-container" style="flex-grow: 1;">
+        <ui:VisualElement name="enemy-container" style="flex-grow: 1; flex-direction: row; justify-content: flex-end; align-items: stretch; align-self: stretch; align-content: center;">
+            <ui:Instance template="UnitStats"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="game-container" style="flex-grow: 1; width: auto; height: 35%;"/>
+        <ui:VisualElement name="player-container" style="flex-grow: 1; flex-direction: row;">
+            <ui:VisualElement name="player-stats-container" style="flex-grow: 1; justify-content: flex-end;">
+                <ui:Instance template="UnitStats"/>
+            </ui:VisualElement>
+            <ui:VisualElement name="player-button-container" style="flex-grow: 1; flex-direction: row; justify-content: space-evenly; align-content: auto; align-self: auto; align-items: flex-end; flex-basis: 30%; flex-shrink: 1; bottom: 0;">
+                <ui:Button text="ATTACK" name="attack-button" class="player-button text"/>
+                <ui:Button text="SKILL" name="skill-button" class="player-button text"/>
+                <ui:Button text="ITEM" name="item-button" class="player-button text"/>
+                <ui:Button text="RUN" name="run-button" class="player-button text"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
 </ui:UXML>

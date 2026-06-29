@@ -2,26 +2,24 @@ using Eflatun.SceneReference;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneController : MonoBehaviour
+public static class SceneController
 {
-    public static SceneController Instance { get; private set; }
-
-    private void Awake() {
-        if (Instance != null) {
-            Destroy(this);
-            return;
-        }
-        
-        Instance = this;
-        
-        DontDestroyOnLoad(this);
+    public static AsyncOperation LoadScene(SceneReference scene, LoadSceneMode mode = LoadSceneMode.Single) {
+        return SceneManager.LoadSceneAsync(scene.Path, mode);
     }
-
-    public void LoadScene(SceneReference scene, LoadSceneMode mode = LoadSceneMode.Single) {
-        SceneManager.LoadScene(scene.Name, mode);
+    
+    public static AsyncOperation UnloadScene(SceneReference scene) {
+        return SceneManager.UnloadSceneAsync(scene.Path);
     }
+    
+    public static void SetActiveScene(SceneReference scene) {
+        SceneManager.SetActiveScene(scene.LoadedScene);
+    }
+    
+    public static SceneReference GetCurrentActiveScene() {
+        Scene activeScene = SceneManager.GetActiveScene();
+        SceneReference sceneReference = SceneReference.FromScenePath(activeScene.path);
 
-    public void LoadSceneAsync(SceneReference scene, LoadSceneMode mode = LoadSceneMode.Single) {
-        SceneManager.LoadSceneAsync(scene.Name, mode);
+        return sceneReference;
     }
 }
