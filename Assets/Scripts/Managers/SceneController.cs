@@ -1,4 +1,4 @@
-using Game.Utils;
+using Eflatun.SceneReference;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,10 +18,10 @@ public class SceneController : MonoBehaviour
     }
 
     public void LoadScene(SceneReference scene, LoadSceneMode mode = LoadSceneMode.Single) {
-        SceneManager.LoadScene(scene, mode);
+        SceneManager.LoadScene(scene.Name, mode);
     }
 
     public void LoadSceneAsync(SceneReference scene, LoadSceneMode mode = LoadSceneMode.Single) {
-        SceneManager.LoadSceneAsync(scene, mode);
+        SceneManager.LoadSceneAsync(scene.Name, mode);
     }
 }
