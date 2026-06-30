@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9936d7bb0147f2a5f5953d6090c956, type: 3}
   m_Name: Global Battle Context
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.BattleContextSO
-  CurrentBattleData: {fileID: 11400000, guid: 302099d043e10e64faabef59fb0b7396, type: 2}
+  CurrentBattleData: {fileID: 11400000, guid: 15b884cdbda8d8540b5ceeafded6fb9f, type: 2}

@@ -21,5 +21,11 @@ namespace Game.Gameplay {
             
             GameEventManager.Instance.PlayerEvent.RaiseOnInventoryChanged();
         }
+        
+        public void ResetInventory() {
+            items.Clear();
+            
+            GameEventManager.Instance.PlayerEvent.RaiseOnInventoryChanged();
+        }
     }
 }

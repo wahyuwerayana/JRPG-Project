@@ -28,11 +28,21 @@ namespace Game.Gameplay {
 
             Wave currentWave = BattleContext.CurrentBattleData.waves[waveIdx];
 
-            foreach(EnemyWave enemyWave in currentWave.enemyInfos) {
-                for(int i = 0; i < enemyWave.enemyCount; i++) {
+            int rowCount = currentWave.enemyInfos.Length;
+            const float zSpacing = 3f;
+            const float xSpacing = 3f;
+
+            for(int i = 0; i < rowCount; i++) {
+                EnemyWave enemyWave = currentWave.enemyInfos[i];
+                float zModifier = (i - (rowCount - 1) / 2f) * zSpacing;
+                
+                for(int j = 0; j < enemyWave.enemyCount; j++) {
                     Vector3 spawnPosition = enemySpawnTransform.position;
-                    spawnPosition.x += i * 1.5f;
-                    spawnPosition.z += i * 1.5f;
+                    
+                    float xModifier = (j - (enemyWave.enemyCount - 1) / 2f) * xSpacing;
+                    
+                    spawnPosition += enemySpawnTransform.right * xModifier;
+                    spawnPosition += -enemySpawnTransform.forward * zModifier;
                     
                     EnemyCombat enemyUnit = Instantiate(enemyWave.enemy, spawnPosition, enemySpawnTransform.rotation).GetComponent<EnemyCombat>();
                     
