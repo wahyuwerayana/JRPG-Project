@@ -1,3 +1,4 @@
+using Game.Managers;
 using Game.Settings;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace Game.Gameplay {
         private Vector2 currentDirection;
         private CharacterController characterController;
         private Transform mainCameraTransform;
+
+        private bool isMoving = false;
 
         private void Awake() {
             playerData = GetComponent<UnitDataContainer>().Data;
@@ -36,8 +39,19 @@ namespace Game.Gameplay {
         }
 
         private void Move() {
-            if (currentDirection == Vector2.zero) 
+            if (currentDirection == Vector2.zero) {
+                if (isMoving) {
+                    isMoving = false;
+                    GameEventManager.Instance.PlayerEvent.RaiseOnMoveEnded();
+                }
+                
                 return;
+            }
+            
+            if(!isMoving){
+                isMoving = true;
+                GameEventManager.Instance.PlayerEvent.RaiseOnMoveStarted();
+            }
             
             Vector3 cameraForward = mainCameraTransform.forward;
             Vector3 cameraRight = mainCameraTransform.right;
