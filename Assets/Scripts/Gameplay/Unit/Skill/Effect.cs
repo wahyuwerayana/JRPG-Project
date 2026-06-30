@@ -24,18 +24,29 @@ namespace Game.Gameplay {
         public float baseAmount;
         
         public override void Execute(UnitCombatBase caster, UnitCombatBase target) {
-            target.Heal(baseAmount);
+            caster.Heal(baseAmount);
         }
     }
 
     [Serializable]
-    public class MPEffect : Effect {
+    public class MPRegenEffect : Effect {
         public int minAmount;
         public int maxAmount;
         
         public override void Execute(UnitCombatBase caster, UnitCombatBase target) {
             float amount = Random.Range(minAmount, maxAmount);
-            target.RestoreMP(amount);
+            caster.RegenMP(amount);
+        }
+    }
+
+    [Serializable]
+    public class MPDecreaseEffect : Effect {
+        public int minAmount;
+        public int maxAmount;
+        
+        public override void Execute(UnitCombatBase caster, UnitCombatBase target) {
+            float amount = Random.Range(minAmount, maxAmount);
+            target.TakeMP(amount);
         }
     }
 }

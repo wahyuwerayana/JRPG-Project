@@ -18,9 +18,9 @@ MonoBehaviour:
   <RotationSpeed>k__BackingField: 0
   <Health>k__BackingField: 40
   <Attack>k__BackingField: 10
-  <MP>k__BackingField: 10
+  <MP>k__BackingField: 15
   <Defense>k__BackingField: 5
   BasicAttack: {fileID: 11400000, guid: e361f4bb542c3b8439d6bee97bc322b3, type: 2}
   Skills:
   - {fileID: 11400000, guid: 4427358fd7f37b743b50fa7897c6781e, type: 2}
-  - {fileID: 11400000, guid: 5f39a5a5e042a1041ab75c3c338f2b7d, type: 2}
+  - {fileID: 11400000, guid: 22d7ae1fef9c3274b90f7ba68717f45c, type: 2}

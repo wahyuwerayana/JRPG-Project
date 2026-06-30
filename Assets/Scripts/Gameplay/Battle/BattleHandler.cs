@@ -168,5 +168,11 @@ namespace Game.Gameplay {
             currentEnemyTurnIdx++;
             ExecuteNextEnemyTurn();
         }
+        
+        //TODO: Delete
+        [ContextMenu("Debug: Force Win")]
+        private void ForceWin() {
+            EndBattle(true);
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace Game.Gameplay {
             }
 
             currentMP -= skillData.MPCost;
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPUsed(this, currentMP, skillData.MPCost);
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, skillData.MPCost);
             
             GameEventManager.Instance.BattleEvent.RaiseOnUnitAttack(this, skillData);
         }
@@ -35,7 +35,7 @@ namespace Game.Gameplay {
         public virtual void TakeDamage(float damageAmount) {
             float actualDamage = CombatUtils.CalculateDamage(damageAmount, Stats.Defense);
             
-            currentHealth = Mathf.Max(0f, currentHealth - actualDamage);
+            currentHealth = Mathf.Clamp(currentHealth - actualDamage, 0f, Stats.Health);
             
             GameEventManager.Instance.BattleEvent.RaiseOnUnitDamaged(this, currentHealth, actualDamage);
             
@@ -45,13 +45,21 @@ namespace Game.Gameplay {
         }
         
         public virtual void Heal(float healAmount) {
-            currentHealth = Mathf.Min(Stats.Health, currentHealth + healAmount);
+            currentHealth = Mathf.Clamp(currentHealth + healAmount, 0f, Stats.Health);
             
             GameEventManager.Instance.BattleEvent.RaiseOnUnitHealed(this, currentHealth, healAmount);
         }
+
+        public virtual void RegenMP(float mpAmount) {
+            currentMP = Mathf.Clamp(currentMP + mpAmount, 0f, Stats.MP);
+            
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpAmount);
+        }
         
-        public virtual void RestoreMP(float mpAmount) {
-            currentMP = Mathf.Min(Stats.MP, currentMP + mpAmount);
+        public virtual void TakeMP(float mpAmount) {
+            currentMP = Mathf.Clamp(currentMP - mpAmount, 0f, Stats.MP);
+            
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpAmount);
         }
 
         protected virtual void Die() {

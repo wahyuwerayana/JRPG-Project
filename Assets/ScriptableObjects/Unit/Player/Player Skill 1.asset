@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23624b52ac184cdba80b1ea34ee4a2f4, type: 3}
   m_Name: Player Skill 1
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.SkillDataSO
-  Name: CTRL Z
+  Name: Heavy Attack
   Description: 
-  MPCost: 5
+  MPCost: 10
   effects:
   - rid: 2809192399111455446
   animationClip: {fileID: 0}
@@ -24,4 +24,4 @@ MonoBehaviour:
     - rid: 2809192399111455446
       type: {class: DamageEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
       data:
-        damageMultiplier: 1.2
+        damageMultiplier: 1.5

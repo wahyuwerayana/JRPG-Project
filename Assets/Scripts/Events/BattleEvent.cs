@@ -68,7 +68,7 @@ namespace Game.Events {
             OnUnitDied?.Invoke(diedUnit);
         }
         
-        public void RaiseOnUnitMPUsed(UnitCombatBase unit, float currentMP, float mpUsed) {
+        public void RaiseOnUnitMPChanged(UnitCombatBase unit, float currentMP, float mpUsed) {
             OnUnitMPChanged?.Invoke(unit, currentMP, mpUsed);
         }
 

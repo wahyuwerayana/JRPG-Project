@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.SkillDataSO
   Name: Goblin Warchief Skill 1
   Description: 
-  MPCost: 0
+  MPCost: 10
   effects:
-  - rid: 2809192421478367350
+  - rid: 2809192421478367365
   animationClip: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 2809192421478367350
-      type: {class: MPEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
+    - rid: 2809192421478367365
+      type: {class: MPRegenEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
       data:
-        minAmount: 1
-        maxAmount: 5
+        minAmount: 5
+        maxAmount: 20

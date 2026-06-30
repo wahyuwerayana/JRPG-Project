@@ -15,8 +15,13 @@ MonoBehaviour:
   Name: Tormented Soul Basic Attack
   Description: 
   MPCost: 0
-  effects: []
+  effects:
+  - rid: 2809192421478367358
   animationClip: {fileID: 0}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 2809192421478367358
+      type: {class: DamageEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
+      data:
+        damageMultiplier: 0.8

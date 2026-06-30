@@ -42,10 +42,6 @@ namespace Game.Gameplay {
 
             Vector2 screenPos = inputReader.PointerPosition;
             Ray ray = Camera.main.ScreenPointToRay(screenPos);
-            
-            Debug.Log(screenPos);
-            Debug.Log(ray);
-            Debug.Log(mainCamera);
 
             if (!Physics.Raycast(ray, out RaycastHit hit, 100f, enemyLayer)) 
                 return;
