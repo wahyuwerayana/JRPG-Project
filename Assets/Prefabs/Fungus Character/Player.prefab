@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fb867d2049d41f597aefdd6b19f598, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: Jim
-  nameColor: {r: 0.18828759, g: 0.2949148, b: 0.8113208, a: 1}
+  nameText: Ray
+  nameColor: {r: 0.41282305, g: 0.50356114, b: 0.94716984, a: 1}
   soundEffect: {fileID: 0}
   portraits: []
   portraitsFace: 0

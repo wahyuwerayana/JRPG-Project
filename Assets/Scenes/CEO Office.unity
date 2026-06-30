@@ -3382,7 +3382,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1604611627540692, guid: 0636a8b0926172c499640f89dacb0a94, type: 3}
       propertyPath: m_Name
-      value: SM_Chr_Boss_Male_01
+      value: Pak Wira
       objectReference: {fileID: 0}
     - target: {fileID: 1634700121870398, guid: 0636a8b0926172c499640f89dacb0a94, type: 3}
       propertyPath: m_IsActive
@@ -11108,7 +11108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Fungus::Fungus.Say
   itemId: 1
   indentLevel: 0
-  storyText: Jim! Masuklah.
+  storyText: Ray! Masuklah.
   description: 
   character: {fileID: 6811796462015828311, guid: 4b2ef076a1b90934eba6dea290e29095, type: 3}
   portrait: {fileID: 0}
@@ -11206,7 +11206,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 645151870}
   selectedCommands:
-  - {fileID: 645151878}
+  - {fileID: 645151873}
   variables: []
   description: 
   stepPause: 0
@@ -11534,7 +11534,7 @@ MonoBehaviour:
   isLocal: 0
 --- !u!114 &645151886
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11559,7 +11559,7 @@ MonoBehaviour:
   parameterNameOLD: 
 --- !u!114 &645151887
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
