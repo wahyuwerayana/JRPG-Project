@@ -19,10 +19,10 @@ namespace Game.Utils {
             PlayerLoop.SetPlayerLoop(currentPlayerLoop);
             PlayerLoopUtils.PrintPlayerLoop(currentPlayerLoop);
             
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             EditorApplication.playModeStateChanged -= OnPlayModeState;
             EditorApplication.playModeStateChanged += OnPlayModeState;
-            #endif
+            
 
             static void OnPlayModeState(PlayModeStateChange state) {
                 if (state == PlayModeStateChange.ExitingPlayMode) {
@@ -33,6 +33,7 @@ namespace Game.Utils {
                     TimerManager.Clear();
                 }
             }
+#endif
         }
 
         static void RemoveTimerManager<T>(ref PlayerLoopSystem loop) {
