@@ -16,21 +16,18 @@ namespace Game.Gameplay {
         }
 
         public virtual void UseSkill(SkillDataSO skillData, UnitCombatBase target) {
-            if (skillData == null) {
-                Debug.LogWarning("Skill is null");
+            if (skillData == null)
                 return;
-            }
 
-            if (currentMP < skillData.MPCost) {
-                Debug.LogWarning("Not enough MP to use skill");
+            if (currentMP < skillData.MPCost)
                 return;
-            }
 
             foreach(Effect effect in skillData.effects) {
                 effect.Execute(this, target);
             }
 
             currentMP -= skillData.MPCost;
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPUsed(this, currentMP, skillData.MPCost);
             
             GameEventManager.Instance.BattleEvent.RaiseOnUnitAttack(this, skillData);
         }

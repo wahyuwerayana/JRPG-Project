@@ -12,6 +12,14 @@ public static class SceneController
         return SceneManager.UnloadSceneAsync(scene.Path);
     }
     
+    public static async Awaitable LoadSceneAndSetActive(SceneReference scene, LoadSceneMode mode = LoadSceneMode.Single) {
+        AsyncOperation loadOperation = LoadScene(scene, mode);
+
+        await loadOperation;
+        
+        SetActiveScene(scene);
+    }
+    
     public static void SetActiveScene(SceneReference scene) {
         SceneManager.SetActiveScene(scene.LoadedScene);
     }

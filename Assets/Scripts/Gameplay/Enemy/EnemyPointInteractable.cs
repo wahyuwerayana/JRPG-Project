@@ -1,5 +1,7 @@
 using Eflatun.SceneReference;
+using Game.Managers;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace Game.Gameplay {
@@ -7,14 +9,33 @@ namespace Game.Gameplay {
         [SerializeField] private SceneReference battleScene;
         [SerializeField] private BattleData battleData;
 
+        [SerializeField] private UnityEvent<BattleData> OnPlayerWin;
+        
         [Header("Global Context")]
         [SerializeField] private BattleContextSO battleContext;
-        
+
+        private void OnEnable() {
+            GameEventManager.Instance.BattleEvent.OnWin += HandlePlayerWin;
+        }
+
+        private void OnDisable() {
+            GameEventManager.Instance.BattleEvent.OnWin -= HandlePlayerWin;
+        }
+
+        private void HandlePlayerWin(BattleData winBattleData) {
+            if (winBattleData != battleData)
+                return;
+            
+            OnPlayerWin?.Invoke(winBattleData);
+            
+            Destroy(gameObject);
+        }
+
         public void Interact() {
             if (battleContext != null)
                 battleContext.CurrentBattleData = battleData;
                 
-            SceneController.LoadScene(battleScene, LoadSceneMode.Additive);
+            _ = SceneController.LoadSceneAndSetActive(battleScene, LoadSceneMode.Additive);
         }
     }
 }

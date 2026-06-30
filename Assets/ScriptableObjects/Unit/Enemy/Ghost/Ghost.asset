@@ -22,5 +22,5 @@ MonoBehaviour:
   <Defense>k__BackingField: 2
   BasicAttack: {fileID: 11400000, guid: 03d625a5c45cb1548be35d9c52a8b514, type: 2}
   Skills:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ce4b9b6535112304883b9e0d55b67a84, type: 2}
+  - {fileID: 11400000, guid: 4ba1455f40c5fc3409fe3b586fe787eb, type: 2}

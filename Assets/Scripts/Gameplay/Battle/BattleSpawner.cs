@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Game.Managers;
 using UnityEngine;
 
@@ -13,18 +11,9 @@ namespace Game.Gameplay {
         [SerializeField] private GameObject playerPrefab;
 
         [Header("Global Context")]
-        [SerializeField] private BattleContextSO battleContext;
-
-        private int currentWaveIdx = 0;
+        [field: SerializeField] public BattleContextSO BattleContext { get; private set; }
         
-        private void Start() {
-            SpawnPlayerUnit();
-            
-            if(battleContext != null && battleContext.CurrentBattleData != null)
-                SpawnEnemyUnits(battleContext.CurrentBattleData, 0);
-        }
-        
-        private void SpawnPlayerUnit() {
+        public void SpawnPlayerUnit() {
             if (playerSpawnTransform == null || playerPrefab == null)
                 return;
             
@@ -33,11 +22,11 @@ namespace Game.Gameplay {
             GameEventManager.Instance.BattleEvent.RaiseOnPlayerSpawned(playerUnit);
         }
 
-        private void SpawnEnemyUnits(BattleData data, int waveIdx) {
-            if (waveIdx >= data.waves.Length)
+        public void SpawnEnemyUnits(int waveIdx) {
+            if (waveIdx >= BattleContext.CurrentBattleData.waves.Length)
                 return;
 
-            Wave currentWave = data.waves[waveIdx];
+            Wave currentWave = BattleContext.CurrentBattleData.waves[waveIdx];
 
             foreach(EnemyWave enemyWave in currentWave.enemyInfos) {
                 for(int i = 0; i < enemyWave.enemyCount; i++) {

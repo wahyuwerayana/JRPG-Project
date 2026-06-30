@@ -7,6 +7,7 @@ namespace Game.Gameplay {
         [Header("Targeting System")]
         [SerializeField] private PlayerInputReader inputReader;
         [SerializeField] private LayerMask enemyLayer;
+        [SerializeField] private Camera mainCamera;
 
         private PlayerCombat playerUnit;
         private SkillDataSO queuedSkill;
@@ -35,29 +36,26 @@ namespace Game.Gameplay {
             queuedSkill = selectedSkill;
         }
 
-        public void HandleEnemyAction() {
-            if(BattleHandler.Instance.CurrentState != BattleState.EnemyTurn)
-                return;
-
-            
-        }
-
         private void HandleTargetClick() {
             if(BattleHandler.Instance.CurrentState != BattleState.SelectingTarget)
                 return;
 
             Vector2 screenPos = inputReader.PointerPosition;
             Ray ray = Camera.main.ScreenPointToRay(screenPos);
+            
+            Debug.Log(screenPos);
+            Debug.Log(ray);
+            Debug.Log(mainCamera);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f, enemyLayer)) {
-                if (hit.collider.TryGetComponent<EnemyCombat>(out EnemyCombat targetEnemy)) {
-                    BattleHandler.Instance.ChangeState(BattleState.Attacking);
+            if (!Physics.Raycast(ray, out RaycastHit hit, 100f, enemyLayer)) 
+                return;
+            
+            if (!hit.collider.TryGetComponent<EnemyCombat>(out EnemyCombat targetEnemy))
+                return;
+
+            BattleHandler.Instance.ChangeState(BattleState.Attacking);
                     
-                    playerUnit.UseSkill(queuedSkill, targetEnemy);
-                    
-                    // Wait for the skill to finish
-                }
-            }
+            playerUnit.ExecuteSkillAction(queuedSkill, targetEnemy);
         }
     }
 }

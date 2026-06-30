@@ -16,9 +16,12 @@ namespace Game.Events {
         public event UnityAction<UnitCombatBase, float, float> OnUnitDamaged;
         public event UnityAction<UnitCombatBase, SkillDataSO> OnUnitAttacked;
         public event UnityAction<UnitCombatBase, float, float> OnUnitHealed;
+        public event UnityAction<UnitCombatBase> OnUnitTurnFinished;
         public event UnityAction<UnitCombatBase> OnUnitDied;
         
-        public event UnityAction OnWin;
+        public event UnityAction<UnitCombatBase, float, float> OnUnitMPChanged;
+        
+        public event UnityAction<BattleData> OnWin;
         public event UnityAction OnLose;
 
         public void RaiseOnStart() {
@@ -52,6 +55,10 @@ namespace Game.Events {
         public void RaiseOnUnitAttack(UnitCombatBase caster, SkillDataSO skillData) {
             OnUnitAttacked?.Invoke(caster, skillData);
         }
+        
+        public void RaiseOnUnitTurnFinished(UnitCombatBase unit) {
+            OnUnitTurnFinished?.Invoke(unit);
+        }
 
         public void RaiseOnUnitHealed(UnitCombatBase healedUnit, float currentHealth, float healedAmount) {
             OnUnitHealed?.Invoke(healedUnit, currentHealth, healedAmount);
@@ -60,9 +67,13 @@ namespace Game.Events {
         public void RaiseOnUnitDied(UnitCombatBase diedUnit) {
             OnUnitDied?.Invoke(diedUnit);
         }
+        
+        public void RaiseOnUnitMPUsed(UnitCombatBase unit, float currentMP, float mpUsed) {
+            OnUnitMPChanged?.Invoke(unit, currentMP, mpUsed);
+        }
 
-        public void RaiseOnWin() {
-            OnWin?.Invoke();
+        public void RaiseOnWin(BattleData battleData) {
+            OnWin?.Invoke(battleData);
         }
 
         public void RaiseOnLose() {

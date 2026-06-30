@@ -19,31 +19,95 @@ namespace Game.Gameplay {
         
         public BattleState CurrentState { get; private set; } = BattleState.Initializing;
 
-        private EnemyAI currentEnemyTurn;
+        private List<EnemyCombat> activeEnemies = new List<EnemyCombat>();
+        private int currentEnemyTurnIdx = 0;
+        
         private PlayerCombat playerTarget;
+
+        private BattleSpawner spawner;
+
+        private int currentWaveIdx = 0;
         
         private void Awake() {
             Instance = this;
+            
+            spawner = GetComponent<BattleSpawner>();
         }
 
         private void OnEnable() {
             GameEventManager.Instance.BattleEvent.OnPlayerSpawned += HandlePlayerSpawned;
+
+            GameEventManager.Instance.BattleEvent.OnEnemySpawned += HandleEnemySpawned;
+            GameEventManager.Instance.BattleEvent.OnUnitDied += HandleUnitDied;
+            
+            GameEventManager.Instance.BattleEvent.OnUnitTurnFinished += HandleUnitTurnFinished;
         }
         
         private void OnDisable() {
             GameEventManager.Instance.BattleEvent.OnPlayerSpawned -= HandlePlayerSpawned;
+            
+            GameEventManager.Instance.BattleEvent.OnEnemySpawned -= HandleEnemySpawned;
+            GameEventManager.Instance.BattleEvent.OnUnitDied -= HandleUnitDied;
+            
+            GameEventManager.Instance.BattleEvent.OnUnitTurnFinished -= HandleUnitTurnFinished;
+        }
+        
+        private void Start() {
+            InitializeBattle();
         }
         
         private void HandlePlayerSpawned(PlayerCombat player) {
             playerTarget = player;
         }
+        
+        private void HandleEnemySpawned(EnemyCombat enemy) {
+            if(!activeEnemies.Contains(enemy))
+                activeEnemies.Add(enemy);
+        }
 
-        private void Start() {
-            InitializeBattle();
+        private void HandleUnitDied(UnitCombatBase unit) {
+            switch (unit) {
+                case EnemyCombat enemy:
+                {
+                    activeEnemies.Remove(enemy);
+
+                    if (activeEnemies.Count == 0) {
+                        currentWaveIdx++;
+                        
+                        if(currentWaveIdx >= spawner.BattleContext.CurrentBattleData.waves.Length) {
+                            EndBattle(true);
+                            return;
+                        }
+                        
+                        spawner.SpawnEnemyUnits(currentWaveIdx);
+                    }
+
+                    break;
+                }
+                case PlayerCombat:
+                    EndBattle(false);
+                    break;
+            }
         }
         
+        private void HandleUnitTurnFinished(UnitCombatBase finishedUnit) {
+            if(CurrentState is BattleState.Win or BattleState.Lose)
+                return;
+            
+            switch (finishedUnit) {
+                case PlayerCombat:
+                    StartCoroutine(EnemyTurnTransition());
+                    break;
+                case EnemyCombat:
+                    EndEnemyTurn();
+                    break;
+            }
+        }
+
         private void InitializeBattle() {
-            SceneController.SetActiveScene(SceneController.GetCurrentActiveScene());
+            spawner.SpawnPlayerUnit();
+            spawner.SpawnEnemyUnits(currentWaveIdx);
+            
             GameEventManager.Instance.BattleEvent.RaiseOnStart();
             
             ChangeState(BattleState.PlayerTurn);
@@ -53,17 +117,18 @@ namespace Game.Gameplay {
             GameEventManager.Instance.BattleEvent.RaiseOnEnd();
             
             if(isWin) {
-                CurrentState = BattleState.Win;
+                ChangeState(BattleState.Win);
                 StartCoroutine(WinBattleCoroutine());
-                GameEventManager.Instance.BattleEvent.RaiseOnWin();
+                GameEventManager.Instance.BattleEvent.RaiseOnWin(spawner.BattleContext.CurrentBattleData);
             } else {
-                CurrentState = BattleState.Lose;
+                ChangeState(BattleState.Lose);
                 GameEventManager.Instance.BattleEvent.RaiseOnLose();
             }
         }
         
         private IEnumerator WinBattleCoroutine() {
             yield return new WaitForSeconds(1f);
+            
             SceneController.UnloadScene(SceneController.GetCurrentActiveScene());
         }
 
@@ -75,15 +140,33 @@ namespace Game.Gameplay {
         private IEnumerator EnemyTurnTransition() {
             yield return new WaitForSeconds(1f);
             ChangeState(BattleState.EnemyTurn);
-            
-            
+
+            currentEnemyTurnIdx = 0;
+            ExecuteNextEnemyTurn();
         }
 
-        public void EndEnemyTurn() {
-            if (CurrentState != BattleState.EnemyTurn)
+        private void ExecuteNextEnemyTurn() {
+            if(CurrentState is BattleState.Win or BattleState.Lose)
                 return;
             
-            ChangeState(BattleState.PlayerTurn);
+            if(currentEnemyTurnIdx >= activeEnemies.Count) {
+                ChangeState(BattleState.PlayerTurn);
+                return;
+            }
+
+            EnemyCombat currentEnemy = activeEnemies[currentEnemyTurnIdx];
+            if (currentEnemy != null && playerTarget != null) {
+                currentEnemy.ExecuteTurn(playerTarget);
+            } else 
+                EndEnemyTurn();
+        }
+
+        private void EndEnemyTurn() {
+            if (CurrentState != BattleState.EnemyTurn)
+                return;
+
+            currentEnemyTurnIdx++;
+            ExecuteNextEnemyTurn();
         }
     }
 }
