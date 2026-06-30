@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1870ef89f144679bccc1d0d9801bbcc, type: 3}
+  m_Name: Goblin Warchief
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.UnitDataSO
+  <Name>k__BackingField: Goblin Warchief
+  <portrait>k__BackingField: {fileID: 0}
+  <MoveSpeed>k__BackingField: 0
+  <RotationSpeed>k__BackingField: 0
+  <Health>k__BackingField: 40
+  <Attack>k__BackingField: 10
+  <MP>k__BackingField: 10
+  <Defense>k__BackingField: 5
+  BasicAttack: {fileID: 11400000, guid: e361f4bb542c3b8439d6bee97bc322b3, type: 2}
+  Skills:
+  - {fileID: 11400000, guid: 4427358fd7f37b743b50fa7897c6781e, type: 2}
+  - {fileID: 11400000, guid: 5f39a5a5e042a1041ab75c3c338f2b7d, type: 2}
