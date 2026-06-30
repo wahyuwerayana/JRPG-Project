@@ -18,6 +18,8 @@ namespace Game.Events
         /// Raised when the player stopped interacting to an IInteractable object
         /// </summary>
         public event UnityAction<IInteractable> OnInteractEnded;
+
+        public event UnityAction OnInventoryChanged;
         
         public void RaiseOnInteractStarted(IInteractable interactable) {
             OnInteractStarted?.Invoke(interactable);
@@ -33,6 +35,10 @@ namespace Game.Events
         
         public void RaiseOnMoveEnded() {
             OnMoveEnded?.Invoke();
+        }
+        
+        public void RaiseOnInventoryChanged() {
+            OnInventoryChanged?.Invoke();
         }
     }
 }

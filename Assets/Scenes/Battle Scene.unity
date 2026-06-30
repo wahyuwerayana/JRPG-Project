@@ -18462,6 +18462,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.UI.ItemUIHandler
   UICanvasGroup: {fileID: 690503458}
+  itemPrefab: {fileID: 1975743004361233438, guid: ad49cf287fb73f14aa62eb3c87b7d1d4, type: 3}
+  itemContainer: {fileID: 1419889786}
+  playerInventory: {fileID: 11400000, guid: b41646b9224f2794ba134e4c9836013e, type: 2}
 --- !u!1001 &695217989
 PrefabInstance:
   m_ObjectHideFlags: 0

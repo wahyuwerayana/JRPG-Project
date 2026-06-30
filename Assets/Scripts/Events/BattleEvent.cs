@@ -9,6 +9,7 @@ namespace Game.Events {
         public event UnityAction<BattleState> OnBattleStateChanged;
 
         public event UnityAction<SkillDataSO> OnPlayerActionSelected;
+        public event UnityAction<ItemSO> OnPlayerItemSelected;
         
         public event UnityAction<PlayerCombat> OnPlayerSpawned;
         public event UnityAction<EnemyCombat> OnEnemySpawned;
@@ -46,6 +47,10 @@ namespace Game.Events {
         
         public void RaiseOnPlayerActionSelected(SkillDataSO skillData) {
             OnPlayerActionSelected?.Invoke(skillData);
+        }
+
+        public void RaiseOnPlayerItemSelected(ItemSO item) {
+            OnPlayerItemSelected?.Invoke(item);
         }
 
         public void RaiseOnUnitDamaged(UnitCombatBase damagedUnit, float currentHealth, float damageAmount) {

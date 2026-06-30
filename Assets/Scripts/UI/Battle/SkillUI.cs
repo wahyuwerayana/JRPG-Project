@@ -19,8 +19,11 @@ namespace Game.UI {
         }
 
         private void OnSkillButtonClick() {
-            Debug.Log($"Skill {skillData.Name} selected.");
             GameEventManager.Instance.BattleEvent.RaiseOnPlayerActionSelected(skillData);
+        }
+        
+        public void SetSkillAvailability(float currentMP) {
+            skillButton.interactable = currentMP >= skillData.MPCost;
         }
     }
 }

@@ -15,12 +15,14 @@ namespace Game.Gameplay {
         private void OnEnable() {
             GameEventManager.Instance.BattleEvent.OnPlayerSpawned += OnPlayerSpawned;
             GameEventManager.Instance.BattleEvent.OnPlayerActionSelected += HandlePlayerActionSelected;
+            GameEventManager.Instance.BattleEvent.OnPlayerItemSelected += HandlePlayerItemSelected;
             inputReader.Click += HandleTargetClick;
         }
         
         private void OnDisable() {
             GameEventManager.Instance.BattleEvent.OnPlayerSpawned -= OnPlayerSpawned;
             GameEventManager.Instance.BattleEvent.OnPlayerActionSelected -= HandlePlayerActionSelected;
+            GameEventManager.Instance.BattleEvent.OnPlayerItemSelected -= HandlePlayerItemSelected;
             inputReader.Click -= HandleTargetClick;
         }
 
@@ -34,6 +36,15 @@ namespace Game.Gameplay {
             
             BattleHandler.Instance.ChangeState(BattleState.SelectingTarget);
             queuedSkill = selectedSkill;
+        }
+        
+        private void HandlePlayerItemSelected(ItemSO selectedItem) {
+            if(BattleHandler.Instance.CurrentState != BattleState.PlayerTurn)
+                return;
+            
+            BattleHandler.Instance.ChangeState(BattleState.Attacking);
+            
+            playerUnit.ExecuteItemAction(selectedItem);
         }
 
         private void HandleTargetClick() {

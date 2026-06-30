@@ -79,3 +79,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29c29fcbf18d46339ba21c09dfe017a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.PlayerCombat
+  inventory: {fileID: 11400000, guid: b41646b9224f2794ba134e4c9836013e, type: 2}
