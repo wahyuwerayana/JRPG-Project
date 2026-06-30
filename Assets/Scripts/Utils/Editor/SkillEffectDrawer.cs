@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Game.Utils.Editor {
-    [CustomPropertyDrawer(typeof(SkillEffect), true)]
+    [CustomPropertyDrawer(typeof(Effect), true)]
     public class SkillEffectDrawer : PropertyDrawer {
         private static Dictionary<string, Type> typeMap;
 
@@ -60,7 +60,7 @@ namespace Game.Utils.Editor {
         }
 
         static void BuildTypeMap() {
-            Type baseType = typeof(SkillEffect);
+            Type baseType = typeof(Effect);
             typeMap = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(asm =>
                 {

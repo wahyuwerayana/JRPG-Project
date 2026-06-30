@@ -26,7 +26,7 @@ namespace Game.Gameplay {
                 return;
             }
 
-            foreach(SkillEffect effect in skillData.effects) {
+            foreach(Effect effect in skillData.effects) {
                 effect.Execute(this, target);
             }
 

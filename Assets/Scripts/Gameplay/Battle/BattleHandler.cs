@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Game.Managers;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Game.Gameplay {
     public enum BattleState {
         Initializing,
         PlayerTurn,
+        SelectingTarget,
         Attacking,
         EnemyTurn,
         Win,
@@ -13,49 +15,49 @@ namespace Game.Gameplay {
     }
     
     public class BattleHandler : MonoBehaviour {
-        [Header("Battle Spawn Positions")]
-        [SerializeField] private Transform playerSpawnTransform;
-        [SerializeField] private Transform enemySpawnTransform;
-
-        [Header("Player Battle Prefab")]
-        [SerializeField] private GameObject playerPrefab;
+        public static BattleHandler Instance { get; private set; }
         
-        private BattleState state = BattleState.Initializing;
-        [SerializeField] //Remove
-        private BattleData battleData;
-        private int currentWaveIdx = 0;
+        public BattleState CurrentState { get; private set; } = BattleState.Initializing;
 
-        private Enemy currentSelectedEnemy;
+        private EnemyAI currentEnemyTurn;
+        private PlayerCombat playerTarget;
+        
+        private void Awake() {
+            Instance = this;
+        }
+
+        private void OnEnable() {
+            GameEventManager.Instance.BattleEvent.OnPlayerSpawned += HandlePlayerSpawned;
+        }
+        
+        private void OnDisable() {
+            GameEventManager.Instance.BattleEvent.OnPlayerSpawned -= HandlePlayerSpawned;
+        }
+        
+        private void HandlePlayerSpawned(PlayerCombat player) {
+            playerTarget = player;
+        }
 
         private void Start() {
-            //InitializeBattle();
-        }
-
-        [ContextMenu("Initialize Battle")]
-        private void InitializeBattle() {
-            SceneController.SetActiveScene(SceneController.GetCurrentActiveScene());
-            
-            SpawnPlayerUnit();
-            SpawnEnemyUnits(battleData, currentWaveIdx);
-            
-            StartBattle();
+            InitializeBattle();
         }
         
-        private void StartBattle() {
+        private void InitializeBattle() {
+            SceneController.SetActiveScene(SceneController.GetCurrentActiveScene());
             GameEventManager.Instance.BattleEvent.RaiseOnStart();
             
-            HandleStateChange(BattleState.PlayerTurn);
+            ChangeState(BattleState.PlayerTurn);
         }
         
         private void EndBattle(bool isWin) {
             GameEventManager.Instance.BattleEvent.RaiseOnEnd();
             
             if(isWin) {
-                state = BattleState.Win;
+                CurrentState = BattleState.Win;
                 StartCoroutine(WinBattleCoroutine());
                 GameEventManager.Instance.BattleEvent.RaiseOnWin();
             } else {
-                state = BattleState.Lose;
+                CurrentState = BattleState.Lose;
                 GameEventManager.Instance.BattleEvent.RaiseOnLose();
             }
         }
@@ -65,32 +67,23 @@ namespace Game.Gameplay {
             SceneController.UnloadScene(SceneController.GetCurrentActiveScene());
         }
 
-        private void HandleStateChange(BattleState nextState) {
-            state = nextState;
-            
-            
-        }
-        
-        private void SpawnPlayerUnit() {
-            if(playerSpawnTransform == null || playerPrefab == null) 
-                return;
-            
-            Instantiate(playerPrefab, playerSpawnTransform.position, Quaternion.identity);
+        public void ChangeState(BattleState nextState) {
+            CurrentState = nextState;
+            GameEventManager.Instance.BattleEvent.RaiseOnBattleStateChanged(nextState);
         }
 
-        private void SpawnEnemyUnits(BattleData battleData, int waveIdx) {
-            if(waveIdx >= battleData.waves.Length)
+        private IEnumerator EnemyTurnTransition() {
+            yield return new WaitForSeconds(1f);
+            ChangeState(BattleState.EnemyTurn);
+            
+            
+        }
+
+        public void EndEnemyTurn() {
+            if (CurrentState != BattleState.EnemyTurn)
                 return;
             
-            Wave currentWave = battleData.waves[waveIdx];
-            foreach(EnemyWave enemyWave in currentWave.enemyInfos) {
-                for(int i = 0; i < enemyWave.enemyCount; i++) {
-                    Vector3 spawnPosition = enemySpawnTransform.position;
-                    spawnPosition.x += i * 1.5f;
-                    spawnPosition.z += i * 1.5f;
-                    Instantiate(enemyWave.enemy, spawnPosition, enemySpawnTransform.rotation);
-                }
-            }
+            ChangeState(BattleState.PlayerTurn);
         }
     }
 }

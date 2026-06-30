@@ -21,8 +21,15 @@ namespace Game.Settings {
         /// Raised when the player press the interact button on the controller they are using
         /// </summary>
         public event UnityAction Interact = delegate { };
+        
+        /// <summary>
+        /// Raised when the player press the click button on the controller they are using
+        /// </summary>
+        public event UnityAction Click = delegate { };
 
         public MainInput inputActions;
+
+        public Vector2 PointerPosition => inputActions.Player.PointerPosition.ReadValue<Vector2>();
 
         public void EnablePlayerActions() {
             if (inputActions == null) {
@@ -47,5 +54,14 @@ namespace Game.Settings {
             
             Interact?.Invoke();
         }
+        
+        public void OnClick(InputAction.CallbackContext context) {
+            if (!context.performed)
+                return;
+                
+            Click?.Invoke();
+        }
+        
+        public void OnPointerPosition(InputAction.CallbackContext context) { }
     }
 }

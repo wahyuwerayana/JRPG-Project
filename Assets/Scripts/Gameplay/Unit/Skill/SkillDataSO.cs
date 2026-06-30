@@ -11,7 +11,7 @@ namespace Game.Gameplay {
         
         [Header("Skill Attributes")]
         public float MPCost;
-        [SerializeReference] public List<SkillEffect> effects;
+        [SerializeReference] public List<Effect> effects;
 
         [Header("Visuals")]
         public AnimationClip animationClip;
@@ -19,7 +19,7 @@ namespace Game.Gameplay {
         
         private void OnEnable() {
             if (string.IsNullOrEmpty(Name)) Name = name;
-            if (effects == null) effects = new List<SkillEffect>();
+            if (effects == null) effects = new List<Effect>();
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Game.Gameplay {
     public class UnitDataSO : ScriptableObject {
         [field: Header("General")]
         [field: SerializeField] public string Name { get; private set; }
+        [field: SerializeField] public Sprite portrait { get; private set; }
         
         [field: Header("Movement")]
         [field: SerializeField] public float MoveSpeed { get; private set; }

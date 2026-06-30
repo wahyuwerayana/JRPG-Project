@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.BattleData
   <waves>k__BackingField:
   - <enemyInfos>k__BackingField:
-    - <enemy>k__BackingField: {fileID: 1450338839008079483, guid: c5453b60e6e06e144b13ec6f9e251966, type: 3}
-      <enemyCount>k__BackingField: 1
+    - <enemy>k__BackingField: {fileID: 9008751641145479873, guid: e5666f98b22e2cc48bb72a6c9be7cfd5, type: 3}
+      <enemyCount>k__BackingField: 2

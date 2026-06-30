@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.UnitSO
   <Name>k__BackingField: Player
+  <portrait>k__BackingField: {fileID: 0}
   <MoveSpeed>k__BackingField: 3
   <RotationSpeed>k__BackingField: 10
-  <Health>k__BackingField: 0
-  <Attack>k__BackingField: 0
-  <MP>k__BackingField: 0
-  <Defense>k__BackingField: 0
-  BasicAttack: {fileID: 0}
+  <Health>k__BackingField: 100
+  <Attack>k__BackingField: 10
+  <MP>k__BackingField: 20
+  <Defense>k__BackingField: 5
+  BasicAttack: {fileID: 11400000, guid: 643c70d6ab0be3249a8a659ee6a9782f, type: 2}
   Skills:
   - {fileID: 11400000, guid: 00b3c96a2269f6f488975ae6919302fd, type: 2}

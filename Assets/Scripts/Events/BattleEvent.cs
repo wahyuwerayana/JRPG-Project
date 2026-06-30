@@ -1,19 +1,25 @@
-using System;
 using Game.Gameplay;
 using UnityEngine.Events;
 
 namespace Game.Events {
     public class BattleEvent {
-        public event Action OnStart;
-        public event Action OnEnd;
+        public event UnityAction OnStart;
+        public event UnityAction OnEnd;
         
-        public UnityAction<UnitCombatBase, float, float> OnUnitDamaged;
-        public UnityAction<UnitCombatBase, SkillDataSO> OnUnitAttacked;
-        public UnityAction<UnitCombatBase, float, float> OnUnitHealed;
-        public UnityAction<UnitCombatBase> OnUnitDied;
+        public event UnityAction<BattleState> OnBattleStateChanged;
+
+        public event UnityAction<SkillDataSO> OnPlayerActionSelected;
         
-        public event Action OnWin;
-        public event Action OnLose;
+        public event UnityAction<PlayerCombat> OnPlayerSpawned;
+        public event UnityAction<EnemyCombat> OnEnemySpawned;
+        
+        public event UnityAction<UnitCombatBase, float, float> OnUnitDamaged;
+        public event UnityAction<UnitCombatBase, SkillDataSO> OnUnitAttacked;
+        public event UnityAction<UnitCombatBase, float, float> OnUnitHealed;
+        public event UnityAction<UnitCombatBase> OnUnitDied;
+        
+        public event UnityAction OnWin;
+        public event UnityAction OnLose;
 
         public void RaiseOnStart() {
             OnStart?.Invoke();
@@ -21,6 +27,22 @@ namespace Game.Events {
         
         public void RaiseOnEnd() {
             OnEnd?.Invoke();
+        }
+        
+        public void RaiseOnBattleStateChanged(BattleState state) {
+            OnBattleStateChanged?.Invoke(state);
+        }
+        
+        public void RaiseOnEnemySpawned(EnemyCombat enemyUnit) {
+            OnEnemySpawned?.Invoke(enemyUnit);
+        }
+
+        public void RaiseOnPlayerSpawned(PlayerCombat playerUnit) {
+            OnPlayerSpawned?.Invoke(playerUnit);
+        }
+        
+        public void RaiseOnPlayerActionSelected(SkillDataSO skillData) {
+            OnPlayerActionSelected?.Invoke(skillData);
         }
 
         public void RaiseOnUnitDamaged(UnitCombatBase damagedUnit, float currentHealth, float damageAmount) {

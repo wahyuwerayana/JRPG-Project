@@ -631,7 +631,7 @@ GameObject:
   - component: {fileID: 536251975020949222}
   - component: {fileID: 3174581513134746037}
   m_Layer: 5
-  m_Name: Label_HitPoints
+  m_Name: Label_ManaPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -841,6 +841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1532799790501200127}
   - component: {fileID: 6119673467596065754}
+  - component: {fileID: 2423748922059911060}
   m_Layer: 5
   m_Name: Enemy Stats UI
   m_TagString: Untagged
@@ -881,6 +882,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4812316016034505038}
   m_CullTransparentMesh: 1
+--- !u!114 &2423748922059911060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4812316016034505038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f73ec8d53143a38995a2d091f1954a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.EnemyStatsUI
+  enemyHealthText: {fileID: 3054390952701043382}
+  enemyManaText: {fileID: 3174581513134746037}
+  enemyPortrait: {fileID: 384069224377866360}
 --- !u!1 &5331200952643129646
 GameObject:
   m_ObjectHideFlags: 0

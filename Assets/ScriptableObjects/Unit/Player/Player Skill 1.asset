@@ -15,8 +15,13 @@ MonoBehaviour:
   Name: CTRL Z
   Description: 
   MPCost: 5
-  effects: []
+  effects:
+  - rid: 2809192399111455446
   animationClip: {fileID: 0}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 2809192399111455446
+      type: {class: DamageEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
+      data:
+        damageMultiplier: 1.2
