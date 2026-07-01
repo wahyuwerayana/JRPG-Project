@@ -2,8 +2,7 @@ using Eflatun.SceneReference;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class SceneController
-{
+public static class SceneController {
     public static AsyncOperation LoadScene(SceneReference scene, LoadSceneMode mode = LoadSceneMode.Single) {
         return SceneManager.LoadSceneAsync(scene.Path, mode);
     }
