@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Game.Managers;
+using Game.UI;
 using UnityEngine;
 
 namespace Game.Gameplay {
@@ -27,6 +28,8 @@ namespace Game.Gameplay {
         private BattleSpawner spawner;
 
         private int currentWaveIdx = 0;
+        
+        private FadeOverlayHandler fader;
         
         private void Awake() {
             Instance = this;
@@ -104,9 +107,12 @@ namespace Game.Gameplay {
             }
         }
 
-        private void InitializeBattle() {
+        private async void InitializeBattle() {
             spawner.SpawnPlayerUnit();
             spawner.SpawnEnemyUnits(currentWaveIdx);
+            
+            fader = FindAnyObjectByType<FadeOverlayHandler>();
+            await fader.FadeInAsync();
             
             GameEventManager.Instance.BattleEvent.RaiseOnStart();
             
@@ -124,14 +130,20 @@ namespace Game.Gameplay {
                 GameEventManager.Instance.BattleEvent.RaiseOnLose();
             }
             
-            StartCoroutine(EndBattleCoroutine());
+            EndBattleSequenceAsync();
         }
         
-        private IEnumerator EndBattleCoroutine() {
-            yield return new WaitForSeconds(2f);
+        private async void EndBattleSequenceAsync() {
+            await Awaitable.WaitForSecondsAsync(1f);
+
+            if (fader != null) {
+                await SceneController.UnloadSceneWithFade(SceneController.GetCurrentActiveScene(), fader);
+            }
+            else {
+                SceneController.UnloadScene(SceneController.GetCurrentActiveScene());
+            }
             
             AudioManager.Instance.ResumePreviousBGM();
-            SceneController.UnloadScene(SceneController.GetCurrentActiveScene());
         }
 
         public void ChangeState(BattleState nextState) {

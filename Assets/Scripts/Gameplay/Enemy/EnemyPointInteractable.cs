@@ -1,11 +1,13 @@
 using Eflatun.SceneReference;
 using Game.Managers;
+using Game.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace Game.Gameplay {
     public class EnemyPointInteractable : MonoBehaviour, IInteractable {
+        [Header("References")]
         [SerializeField] private SceneReference battleScene;
         [SerializeField] private BattleData battleData;
 
@@ -13,6 +15,7 @@ namespace Game.Gameplay {
         
         [Header("Global Context")]
         [SerializeField] private BattleContextSO battleContext;
+        [SerializeField] private FadeOverlayHandler fader;
 
         private void OnEnable() {
             GameEventManager.Instance.BattleEvent.OnWin += HandlePlayerWin;
@@ -35,7 +38,7 @@ namespace Game.Gameplay {
             if (battleContext != null)
                 battleContext.CurrentBattleData = battleData;
                 
-            _ = SceneController.LoadSceneAndSetActive(battleScene, LoadSceneMode.Additive);
+            _ = SceneController.LoadSceneWithFade(battleScene, fader, mode: LoadSceneMode.Additive);
         }
         
         public bool IsAvailableForInteract() {
