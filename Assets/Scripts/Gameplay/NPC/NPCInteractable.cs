@@ -8,5 +8,9 @@ namespace Game.Gameplay.NPC {
         public void Interact() {
             flowchart.gameObject.SetActive(true);
         }
+        
+        public bool IsAvailableForInteract() {
+            return flowchart != null;
+        }
     }
 }

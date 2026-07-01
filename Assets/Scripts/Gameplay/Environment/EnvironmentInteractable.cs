@@ -5,9 +5,13 @@ using UnityEngine;
 namespace Gameplay.Environment {
     public class EnvironmentInteractable : MonoBehaviour, IInteractable {
         [SerializeField] private SceneReference sceneToLoad;
-        
+
         public void Interact() {
             SceneController.LoadScene(sceneToLoad);
+        }
+        
+        public bool IsAvailableForInteract() {
+            return sceneToLoad != null;
         }
     }
 }

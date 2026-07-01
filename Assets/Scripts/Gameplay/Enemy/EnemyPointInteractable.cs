@@ -37,5 +37,9 @@ namespace Game.Gameplay {
                 
             _ = SceneController.LoadSceneAndSetActive(battleScene, LoadSceneMode.Additive);
         }
+        
+        public bool IsAvailableForInteract() {
+            return battleScene != null && battleData != null;
+        }
     }
 }
