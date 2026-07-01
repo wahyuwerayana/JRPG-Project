@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game.Gameplay {
@@ -15,6 +16,8 @@ namespace Game.Gameplay {
         
         [Header("Visual")]
         public GameObject skillVFX;
+        
+        public bool IsRequiredSelectingTarget => effects.Any(e => e is DamageEffect);
         
         private void OnEnable() {
             if (string.IsNullOrEmpty(Name)) Name = name;

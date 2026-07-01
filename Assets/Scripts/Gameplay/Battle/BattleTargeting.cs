@@ -34,8 +34,15 @@ namespace Game.Gameplay {
             if(BattleHandler.Instance.CurrentState != BattleState.PlayerTurn)
                 return;
             
-            BattleHandler.Instance.ChangeState(BattleState.SelectingTarget);
             queuedSkill = selectedSkill;
+            
+            if(queuedSkill.IsRequiredSelectingTarget)
+                BattleHandler.Instance.ChangeState(BattleState.SelectingTarget);
+            else {
+                BattleHandler.Instance.ChangeState(BattleState.Attacking);
+                
+                playerUnit.ExecuteSkillAction(queuedSkill, null);
+            }
         }
         
         private void HandlePlayerItemSelected(ItemSO selectedItem) {

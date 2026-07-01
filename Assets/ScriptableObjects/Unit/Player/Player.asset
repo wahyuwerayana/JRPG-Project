@@ -16,7 +16,7 @@ MonoBehaviour:
   <portrait>k__BackingField: {fileID: 0}
   <MoveSpeed>k__BackingField: 3
   <RotationSpeed>k__BackingField: 10
-  <Health>k__BackingField: 100
+  <Health>k__BackingField: 50
   <Attack>k__BackingField: 10
   <MP>k__BackingField: 20
   <Defense>k__BackingField: 5

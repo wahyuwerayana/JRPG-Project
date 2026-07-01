@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Game.Gameplay {
     public class BattleVFXHandler : MonoBehaviour {
+        [Header("VFX References")]
         [SerializeField] private GameObject defaultDamagedVFX;
         [SerializeField] private GameObject healedVFX;
         [SerializeField] private GameObject mpGainedVFX;

@@ -26,12 +26,11 @@ namespace Game.Gameplay {
                 effect.Execute(this, target);
             }
             
-            if (skillData.MPCost > 0) {
-                float mpBeforeUsed = currentMP;
-                currentMP -= skillData.MPCost;
+            
+            float mpBeforeUsed = currentMP;
+            currentMP -= skillData.MPCost;
                 
-                GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpBeforeUsed);
-            }
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpBeforeUsed);
             
             GameEventManager.Instance.BattleEvent.RaiseOnUnitAttack(this, target, skillData);
         }
