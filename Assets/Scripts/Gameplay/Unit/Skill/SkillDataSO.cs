@@ -12,14 +12,13 @@ namespace Game.Gameplay {
         [Header("Skill Attributes")]
         public float MPCost;
         [SerializeReference] public List<Effect> effects;
-
-        [Header("Visuals")]
-        public AnimationClip animationClip;
-        // public GameObject vfxPrefab;
+        
+        [Header("Visual")]
+        public GameObject skillVFX;
         
         private void OnEnable() {
             if (string.IsNullOrEmpty(Name)) Name = name;
-            if (effects == null) effects = new List<Effect>();
+            effects ??= new List<Effect>();
         }
     }
 }

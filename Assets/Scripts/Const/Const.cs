@@ -12,4 +12,8 @@ namespace Game.Const {
     public class Tween {
         public const float DURATION = 1.5f;
     }
+    
+    public class Battle {
+        public const float VFX_DURATION = 1.5f;
+    }
 }

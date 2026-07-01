@@ -12,7 +12,7 @@ namespace Game.Events {
         public event UnityAction<EnemyCombat> OnEnemySpawned;
         
         public event UnityAction<UnitCombatBase, float, float> OnUnitDamaged;
-        public event UnityAction<UnitCombatBase, SkillDataSO> OnUnitAttacked;
+        public event UnityAction<UnitCombatBase, UnitCombatBase, SkillDataSO> OnUnitAttacked;
         public event UnityAction<UnitCombatBase, float, float> OnUnitHealed;
         public event UnityAction<UnitCombatBase> OnUnitTurnFinished;
         public event UnityAction<UnitCombatBase> OnUnitDied;
@@ -46,8 +46,8 @@ namespace Game.Events {
             OnUnitDamaged?.Invoke(damagedUnit, currentHealth, healthBeforeDamaged);
         }
         
-        public void RaiseOnUnitAttack(UnitCombatBase caster, SkillDataSO skillData) {
-            OnUnitAttacked?.Invoke(caster, skillData);
+        public void RaiseOnUnitAttack(UnitCombatBase caster, UnitCombatBase target, SkillDataSO skillData) {
+            OnUnitAttacked?.Invoke(caster, target, skillData);
         }
         
         public void RaiseOnUnitTurnFinished(UnitCombatBase unit) {

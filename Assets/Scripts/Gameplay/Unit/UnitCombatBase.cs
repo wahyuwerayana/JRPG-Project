@@ -25,13 +25,15 @@ namespace Game.Gameplay {
             foreach(Effect effect in skillData.effects) {
                 effect.Execute(this, target);
             }
-
-            float mpBeforeUsed = currentMP;
-            currentMP -= skillData.MPCost;
             
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpBeforeUsed);
+            if (skillData.MPCost > 0) {
+                float mpBeforeUsed = currentMP;
+                currentMP -= skillData.MPCost;
+                
+                GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpBeforeUsed);
+            }
             
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitAttack(this, skillData);
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitAttack(this, target, skillData);
         }
         
         public virtual void TakeDamage(float damageAmount) {

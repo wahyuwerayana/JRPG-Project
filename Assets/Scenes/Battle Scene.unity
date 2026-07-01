@@ -18725,6 +18725,7 @@ GameObject:
   - component: {fileID: 704717544}
   - component: {fileID: 704717547}
   - component: {fileID: 704717546}
+  - component: {fileID: 704717548}
   m_Layer: 0
   m_Name: Battle Handler
   m_TagString: Untagged
@@ -18792,6 +18793,21 @@ MonoBehaviour:
   enemySpawnTransform: {fileID: 1162059795}
   playerPrefab: {fileID: 1450338839008079483, guid: c5453b60e6e06e144b13ec6f9e251966, type: 3}
   <BattleContext>k__BackingField: {fileID: 11400000, guid: 981fa409b7f6615479b620b3f88cdce1, type: 2}
+--- !u!114 &704717548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd536487a1664b6594fbd371200d5638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.BattleVFXHandler
+  defaultDamagedVFX: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
+  healedVFX: {fileID: 1055585006069982, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
+  mpGainedVFX: {fileID: 1380329679129358, guid: 79f561344a9b0d54bb31290904c765bb, type: 3}
 --- !u!1001 &710813417
 PrefabInstance:
   m_ObjectHideFlags: 0

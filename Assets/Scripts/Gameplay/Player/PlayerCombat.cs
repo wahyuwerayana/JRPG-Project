@@ -39,6 +39,7 @@ namespace Game.Gameplay {
             }
             
             inventory.RemoveItem(item);
+            
         }
         
         public void TryRun() {
