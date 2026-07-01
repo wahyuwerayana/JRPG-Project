@@ -12,12 +12,12 @@ namespace Game.Events
         /// <summary>
         /// Raised when the player successfully interacted to an IInteractable object
         /// </summary>
-        public event UnityAction<IInteractable> OnInteractStarted;
+        public event UnityAction OnInteractStarted;
         
         /// <summary>
         /// Raised when the player stopped interacting to an IInteractable object
         /// </summary>
-        public event UnityAction<IInteractable> OnInteractEnded;
+        public event UnityAction OnInteractEnded;
 
         public event UnityAction OnInventoryChanged;
         
@@ -25,12 +25,12 @@ namespace Game.Events
         public event UnityAction<SkillDataSO> OnPlayerActionSelected;
         public event UnityAction<ItemSO> OnPlayerItemSelected;
         
-        public void RaiseOnInteractStarted(IInteractable interactable) {
-            OnInteractStarted?.Invoke(interactable);
+        public void RaiseOnInteractStarted() {
+            OnInteractStarted?.Invoke();
         }
         
-        public void RaiseOnInteractEnd(IInteractable interactable) {
-            OnInteractEnded?.Invoke(interactable);
+        public void RaiseOnInteractEnded() {
+            OnInteractEnded?.Invoke();
         }
         
         public void RaiseOnMoveStarted() {

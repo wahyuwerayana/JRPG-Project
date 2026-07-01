@@ -14,6 +14,7 @@ namespace Game.Gameplay {
         private Transform mainCameraTransform;
 
         private bool isMoving = false;
+        private int movementLockCount = 0;
 
         private void Awake() {
             playerData = GetComponent<UnitDataContainer>().Data;
@@ -23,13 +24,28 @@ namespace Game.Gameplay {
 
         private void OnEnable() {
             inputReader.Move += ReadMoveInput;
+
+            GameEventManager.Instance.BattleEvent.OnStart += LockMovement;
+            GameEventManager.Instance.BattleEvent.OnEnd += UnlockMovement;
+
+            GameEventManager.Instance.PlayerEvent.OnInteractStarted += LockMovement;
+            GameEventManager.Instance.PlayerEvent.OnInteractEnded += UnlockMovement;
         }
         
         private void OnDisable() {
             inputReader.Move -= ReadMoveInput;
+            
+            GameEventManager.Instance.BattleEvent.OnStart -= LockMovement;
+            GameEventManager.Instance.BattleEvent.OnEnd -= UnlockMovement;
+
+            GameEventManager.Instance.PlayerEvent.OnInteractStarted -= LockMovement;
+            GameEventManager.Instance.PlayerEvent.OnInteractEnded -= UnlockMovement;
         }
 
         private void ReadMoveInput(Vector2 direction) {
+            if(movementLockCount > 0)
+                return;
+
             currentDirection = direction;
         }
 
@@ -39,11 +55,9 @@ namespace Game.Gameplay {
         }
 
         private void Move() {
-            if (currentDirection == Vector2.zero) {
-                if (isMoving) {
-                    isMoving = false;
-                    GameEventManager.Instance.PlayerEvent.RaiseOnMoveEnded();
-                }
+            if (currentDirection == Vector2.zero || movementLockCount > 0) {
+                if (isMoving)
+                    StopMovementAndAnimation();
                 
                 return;
             }
@@ -72,5 +86,29 @@ namespace Game.Gameplay {
             if(!characterController.isGrounded)
                 characterController.Move(Physics.gravity * Time.deltaTime);
         }
+
+        private void StopMovementAndAnimation() {
+            currentDirection = Vector2.zero;
+
+            if (isMoving) {
+                isMoving = false;
+                GameEventManager.Instance.PlayerEvent.RaiseOnMoveEnded();
+            }
+        }
+
+        #region Locking
+
+        private void LockMovement() {
+            movementLockCount++;
+            StopMovementAndAnimation();
+        }
+
+        private void UnlockMovement() {
+            movementLockCount--;
+            movementLockCount = Mathf.Max(0, movementLockCount);
+        }
+
+        #endregion
+
     }
 }

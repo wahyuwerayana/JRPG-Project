@@ -120,8 +120,6 @@ namespace Game.Gameplay {
         }
         
         private void EndBattle(bool isWin) {
-            GameEventManager.Instance.BattleEvent.RaiseOnEnd();
-            
             if(isWin) {
                 ChangeState(BattleState.Win);
                 GameEventManager.Instance.BattleEvent.RaiseOnWin(spawner.BattleContext.CurrentBattleData);
@@ -135,6 +133,9 @@ namespace Game.Gameplay {
         
         private async void EndBattleSequenceAsync() {
             await Awaitable.WaitForSecondsAsync(1f);
+            
+            AudioManager.Instance.ResumePreviousBGM();
+            GameEventManager.Instance.BattleEvent.RaiseOnEnd();
 
             if (fader != null) {
                 await SceneController.UnloadSceneWithFade(SceneController.GetCurrentActiveScene(), fader);
@@ -142,8 +143,6 @@ namespace Game.Gameplay {
             else {
                 SceneController.UnloadScene(SceneController.GetCurrentActiveScene());
             }
-            
-            AudioManager.Instance.ResumePreviousBGM();
         }
 
         public void ChangeState(BattleState nextState) {

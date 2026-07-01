@@ -8,7 +8,7 @@ namespace UI.MainMenu {
         [SerializeField] private FadeOverlayHandler fader;
         
         public void PlayGame() {
-            SceneController.LoadSceneWithFade(gameScene, fader);
+            _ = SceneController.LoadSceneWithFade(gameScene, fader);
         }
         
         public void QuitGame() {

@@ -11043,6 +11043,7 @@ GameObject:
   - component: {fileID: 645151886}
   - component: {fileID: 645151888}
   - component: {fileID: 645151889}
+  - component: {fileID: 645151890}
   m_Layer: 0
   m_Name: Ending
   m_TagString: Untagged
@@ -11160,6 +11161,7 @@ MonoBehaviour:
   description: 
   eventHandler: {fileID: 645151869}
   commandList:
+  - {fileID: 645151890}
   - {fileID: 645151868}
   - {fileID: 645151889}
   - {fileID: 645151887}
@@ -11204,7 +11206,7 @@ MonoBehaviour:
   selectedBlocks:
   - {fileID: 645151870}
   selectedCommands:
-  - {fileID: 645151888}
+  - {fileID: 645151890}
   variables: []
   description: 
   stepPause: 0
@@ -11525,7 +11527,7 @@ MonoBehaviour:
   parameterNameOLD: 
 --- !u!114 &645151888
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11543,7 +11545,7 @@ MonoBehaviour:
   fader: {fileID: 1025645876}
 --- !u!114 &645151889
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -11557,6 +11559,21 @@ MonoBehaviour:
   indentLevel: 0
   fader: {fileID: 1025645876}
   waitForFade: 1
+  fadeDuration: 1
+--- !u!114 &645151890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645151865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f4f01868e04545b964fd424758f3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Utils.FungusCommand.RaiseOnInteractStartedCommand
+  itemId: 21
+  indentLevel: 0
 --- !u!1001 &646461037
 PrefabInstance:
   m_ObjectHideFlags: 0

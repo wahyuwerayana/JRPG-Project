@@ -19,10 +19,12 @@ namespace Game.Gameplay {
 
         private void OnEnable() {
             GameEventManager.Instance.BattleEvent.OnWin += HandlePlayerWin;
+            GameEventManager.Instance.BattleEvent.OnEnd += HandleBattleEnd;
         }
 
         private void OnDisable() {
             GameEventManager.Instance.BattleEvent.OnWin -= HandlePlayerWin;
+            GameEventManager.Instance.BattleEvent.OnEnd -= HandleBattleEnd;
         }
 
         private void HandlePlayerWin(BattleData winBattleData) {
@@ -32,6 +34,10 @@ namespace Game.Gameplay {
             OnPlayerWin?.Invoke(winBattleData);
             
             Destroy(gameObject);
+        }
+
+        private void HandleBattleEnd() {
+            GameEventManager.Instance.PlayerEvent.RaiseOnInteractEnded();
         }
 
         public void Interact() {
