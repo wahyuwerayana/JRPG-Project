@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Goblin Warchief
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.UnitDataSO
   <Name>k__BackingField: Goblin Warchief
-  <portrait>k__BackingField: {fileID: 0}
+  <portrait>k__BackingField: {fileID: 21300000, guid: d662f1a04ea590f4393857a0cb61d4c3, type: 3}
   <MoveSpeed>k__BackingField: 0
   <RotationSpeed>k__BackingField: 0
   <Health>k__BackingField: 40
