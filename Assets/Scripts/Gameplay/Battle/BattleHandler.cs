@@ -112,7 +112,9 @@ namespace Game.Gameplay {
             spawner.SpawnEnemyUnits(currentWaveIdx);
             
             fader = FindAnyObjectByType<FadeOverlayHandler>();
-            await fader.FadeInAsync();
+            
+            if(fader != null)
+                await fader.FadeInAsync();
             
             GameEventManager.Instance.BattleEvent.RaiseOnStart();
             

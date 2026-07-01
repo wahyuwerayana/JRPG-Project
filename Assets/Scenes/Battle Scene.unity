@@ -828,6 +828,7 @@ GameObject:
   - component: {fileID: 22996767}
   - component: {fileID: 22996770}
   - component: {fileID: 22996768}
+  - component: {fileID: 22996771}
   m_Layer: 5
   m_Name: Run Button
   m_TagString: Untagged
@@ -907,6 +908,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22996766}
   m_CullTransparentMesh: 1
+--- !u!114 &22996771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 22996766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34659ca89c44b339285df052e6b2270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.UIButtonSound
 --- !u!1001 &33809799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18726,6 +18739,7 @@ GameObject:
   - component: {fileID: 704717547}
   - component: {fileID: 704717546}
   - component: {fileID: 704717548}
+  - component: {fileID: 704717549}
   m_Layer: 0
   m_Name: Battle Handler
   m_TagString: Untagged
@@ -18808,6 +18822,21 @@ MonoBehaviour:
   defaultDamagedVFX: {fileID: 1489431029902184, guid: 4430919f14c50f84085d287cbcb2c30e, type: 3}
   healedVFX: {fileID: 1055585006069982, guid: c7f93a0255162fd47bbe40874f339bf4, type: 3}
   mpGainedVFX: {fileID: 1380329679129358, guid: 79f561344a9b0d54bb31290904c765bb, type: 3}
+--- !u!114 &704717549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704717543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c7b94907b84b509dca03494a809de4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.BattleAudioHandler
+  healSFX: {fileID: 8300000, guid: 0a124209541939148996e50cdf1e07a6, type: 3}
+  damagedSFX: {fileID: 8300000, guid: dea161bc5f7dc2c4abbe6b65d25dadbd, type: 3}
+  mpGainSFX: {fileID: 8300000, guid: df4b6fa330666ce40a42242399be45ef, type: 3}
 --- !u!1001 &710813417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31986,6 +32015,7 @@ GameObject:
   - component: {fileID: 1242705310}
   - component: {fileID: 1242705313}
   - component: {fileID: 1242705311}
+  - component: {fileID: 1242705314}
   m_Layer: 5
   m_Name: Item Button
   m_TagString: Untagged
@@ -32065,6 +32095,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242705309}
   m_CullTransparentMesh: 1
+--- !u!114 &1242705314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242705309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34659ca89c44b339285df052e6b2270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.UIButtonSound
 --- !u!1001 &1244763374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37025,6 +37067,7 @@ GameObject:
   - component: {fileID: 1446526686}
   - component: {fileID: 1446526685}
   - component: {fileID: 1446526684}
+  - component: {fileID: 1446526687}
   m_Layer: 5
   m_Name: Attack Button
   m_TagString: Untagged
@@ -37134,6 +37177,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446526682}
   m_CullTransparentMesh: 1
+--- !u!114 &1446526687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446526682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34659ca89c44b339285df052e6b2270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.UIButtonSound
 --- !u!1001 &1447613308
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39983,6 +40038,7 @@ GameObject:
   - component: {fileID: 1558495667}
   - component: {fileID: 1558495670}
   - component: {fileID: 1558495668}
+  - component: {fileID: 1558495671}
   m_Layer: 5
   m_Name: Skill Button
   m_TagString: Untagged
@@ -40062,6 +40118,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558495666}
   m_CullTransparentMesh: 1
+--- !u!114 &1558495671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558495666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d34659ca89c44b339285df052e6b2270, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.UI.UIButtonSound
 --- !u!1001 &1559087704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53372,10 +53440,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6671640305228799868, guid: 3a43ef3e42ff8e340b967d5593c8d0c9, type: 3}
-      propertyPath: audioLibrary
-      value: 
-      objectReference: {fileID: 11400000, guid: f62e92afaf9bc964cb675a834ca8549c, type: 2}
     - target: {fileID: 6912066397010033190, guid: 3a43ef3e42ff8e340b967d5593c8d0c9, type: 3}
       propertyPath: m_Name
       value: Audio Manager

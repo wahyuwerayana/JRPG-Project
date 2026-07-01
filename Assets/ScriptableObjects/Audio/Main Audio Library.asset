@@ -33,4 +33,12 @@ MonoBehaviour:
       asset: {fileID: 102900000, guid: c6e371a8736fa0243812147aaf1bf92d, type: 3}
       guid: c6e371a8736fa0243812147aaf1bf92d
     <AudioClip>k__BackingField: {fileID: 8300000, guid: 964e55f214673364e9f5bdefe3b333e7, type: 3}
-  <SFXAudioPairs>k__BackingField: []
+  <SFXAudioPairs>k__BackingField:
+  - <AudioKey>k__BackingField: SFX_Button_Click
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 7367334b4519e4b0e87ea6d643a7300b, type: 3}
+  - <AudioKey>k__BackingField: SFX_Damaged
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: dea161bc5f7dc2c4abbe6b65d25dadbd, type: 3}
+  - <AudioKey>k__BackingField: SFX_Healed
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 0a124209541939148996e50cdf1e07a6, type: 3}
+  - <AudioKey>k__BackingField: SFX_MP_Regen
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: df4b6fa330666ce40a42242399be45ef, type: 3}
