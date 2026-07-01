@@ -20,12 +20,16 @@ namespace Game.UI {
 
         private void OnEnable() {
             GameEventManager.Instance.BattleEvent.OnUnitDamaged += UpdateHealthUI;
+            GameEventManager.Instance.BattleEvent.OnUnitHealed += UpdateHealthUI;
+            
             GameEventManager.Instance.BattleEvent.OnUnitMPChanged += UpdateManaUI;
             GameEventManager.Instance.BattleEvent.OnPlayerSpawned += Init;
         }
         
         private void OnDisable() {
             GameEventManager.Instance.BattleEvent.OnUnitDamaged -= UpdateHealthUI;
+            GameEventManager.Instance.BattleEvent.OnUnitHealed -= UpdateHealthUI;
+            
             GameEventManager.Instance.BattleEvent.OnUnitMPChanged -= UpdateManaUI;
             GameEventManager.Instance.BattleEvent.OnPlayerSpawned -= Init;
         }

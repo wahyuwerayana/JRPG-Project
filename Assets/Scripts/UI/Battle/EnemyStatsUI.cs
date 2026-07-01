@@ -22,18 +22,22 @@ namespace Game.UI {
         }
 
         private void OnEnable() {
-            GameEventManager.Instance.BattleEvent.OnUnitDamaged += HandleUnitDamaged;
+            GameEventManager.Instance.BattleEvent.OnUnitDamaged += HandleUnitHPChanged;
+            GameEventManager.Instance.BattleEvent.OnUnitHealed += HandleUnitHPChanged;
+            
             GameEventManager.Instance.BattleEvent.OnUnitDied += HandleUnitDied;
             GameEventManager.Instance.BattleEvent.OnUnitMPChanged += HandleUnitMPChanged;
         }
         
         private void OnDisable() {
-            GameEventManager.Instance.BattleEvent.OnUnitDamaged -= HandleUnitDamaged;
+            GameEventManager.Instance.BattleEvent.OnUnitDamaged -= HandleUnitHPChanged;
+            GameEventManager.Instance.BattleEvent.OnUnitHealed -= HandleUnitHPChanged;
+            
             GameEventManager.Instance.BattleEvent.OnUnitDied -= HandleUnitDied;
             GameEventManager.Instance.BattleEvent.OnUnitMPChanged -= HandleUnitMPChanged;
         }
         
-        private void HandleUnitDamaged(UnitCombatBase unit, float currentHealth, float healthBeforeDamaged) {
+        private void HandleUnitHPChanged(UnitCombatBase unit, float currentHealth, float healthBeforeDamaged) {
             if (unit != enemyUnit)
                 return;
                 

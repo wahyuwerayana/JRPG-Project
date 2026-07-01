@@ -18,16 +18,16 @@ MonoBehaviour:
   effects:
   - rid: 2809192421478367361
   - rid: 2809192421478367362
-  animationClip: {fileID: 0}
+  skillVFX: {fileID: 0}
   references:
     version: 2
     RefIds:
     - rid: 2809192421478367361
       type: {class: MPDecreaseEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
       data:
-        minAmount: 2
+        minAmount: 1
         maxAmount: 5
     - rid: 2809192421478367362
       type: {class: DamageEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
       data:
-        damageMultiplier: 0.5
+        damageMultiplier: 0.25

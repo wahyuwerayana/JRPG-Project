@@ -31,15 +31,14 @@ namespace Game.Gameplay {
         }
         
         public void UseItem(ItemSO item) {
-            if (item is not UsableItemSO usableItem)
+            if (item.Type != ItemType.Usable)
                 return;
 
-            foreach(Effect effect in usableItem.itemEffects) {
+            foreach(Effect effect in item.Effects) {
                 effect.Execute(this, null);
             }
             
             inventory.RemoveItem(item);
-            
         }
         
         public void TryRun() {

@@ -17,11 +17,11 @@ MonoBehaviour:
   MPCost: 0
   effects:
   - rid: 2809192421478367358
-  animationClip: {fileID: 0}
+  skillVFX: {fileID: 0}
   references:
     version: 2
     RefIds:
     - rid: 2809192421478367358
       type: {class: DamageEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
       data:
-        damageMultiplier: 0.8
+        damageMultiplier: 0.5

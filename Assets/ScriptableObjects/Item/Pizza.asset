@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af6e03b3c4644b48909a1503fb2d6c8, type: 3}
+  m_Name: Pizza
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.ItemSO
+  Name: Pizza
+  Description: Restore 10 Health
+  Icon: {fileID: 21300000, guid: 23eb5fc92cc3fac4fb3027408002e45a, type: 3}
+  Type: 1
+  Effects:
+  - rid: 2809192421478367794
+  references:
+    version: 2
+    RefIds:
+    - rid: 2809192421478367794
+      type: {class: HealEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
+      data:
+        baseAmount: 10

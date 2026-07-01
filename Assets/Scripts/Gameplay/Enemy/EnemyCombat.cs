@@ -22,7 +22,7 @@ namespace Game.Gameplay {
         }
         
         private SkillDataSO DecideSkillToUse() {
-            if (Stats.Skills.Length <= 0) 
+            if (Stats.Skills.Length <= 0 || Random.value < 0.5f) //Randomize using skill or basic attack
                 return Stats.BasicAttack;
 
             SkillDataSO[] availableSkills = Stats.Skills.Where(skill => skill.MPCost <= Stats.MP).ToArray();

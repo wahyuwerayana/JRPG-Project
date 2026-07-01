@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Main Player Inventory
   m_EditorClassIdentifier: Assembly-CSharp::Game.Gameplay.PlayerInventorySO
   items:
-  - {fileID: 11400000, guid: ce439cdbe82ebd14c977e21a42e86ea7, type: 2}
+  - {fileID: 11400000, guid: 47ba5f81a08649f4fb2fb0fe8700219a, type: 2}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Fungus;
 using Game.Gameplay;
 using UnityEngine;
@@ -6,7 +7,7 @@ namespace Game.Utils.FungusCommand {
     [CommandInfo("Game", "AddItemsToInventoryCommand", "Add items to the player's inventory.")]
     public class AddItemsToInventoryCommand : Command {
         [SerializeField] private PlayerInventorySO playerInventory;
-        [SerializeField] private ItemSO[] itemsToAdd;
+        [SerializeReference] private List<ItemSO> itemsToAdd;
         
         public override void OnEnter() {
             foreach(ItemSO itemToAdd in itemsToAdd) {

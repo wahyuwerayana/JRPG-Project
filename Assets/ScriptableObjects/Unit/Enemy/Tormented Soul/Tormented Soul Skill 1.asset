@@ -18,7 +18,7 @@ MonoBehaviour:
   effects:
   - rid: 2809192421478367359
   - rid: 2809192421478367360
-  animationClip: {fileID: 0}
+  skillVFX: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -29,4 +29,4 @@ MonoBehaviour:
     - rid: 2809192421478367360
       type: {class: HealEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
       data:
-        baseAmount: 4
+        baseAmount: 3

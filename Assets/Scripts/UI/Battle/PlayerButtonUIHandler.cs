@@ -31,8 +31,17 @@ namespace Game.UI {
 
         private void Init(PlayerCombat player) {
             attackButton.onClick.AddListener(() => GameEventManager.Instance.PlayerEvent.RaiseOnPlayerActionSelected(player.Stats.BasicAttack));
-            skillButton.onClick.AddListener(() => skillUIHandler.ToggleUI(true));
-            itemButton.onClick.AddListener(() => itemUIHandler.ToggleUI(true));
+            
+            skillButton.onClick.AddListener(() =>
+            {
+                ToggleButtonClick(skillUIHandler);
+            });
+            
+            itemButton.onClick.AddListener(() =>
+            {
+                ToggleButtonClick(itemUIHandler);
+            });
+            
             runButton.onClick.AddListener(player.TryRun);
         }
 
@@ -40,9 +49,24 @@ namespace Game.UI {
             if(state != BattleState.PlayerTurn)
                 return;
             
-            skillUIHandler.ToggleUI(false);
-            itemUIHandler.ToggleUI(false);
+            ToggleSkillAndItemUI(false);
             ToggleUI(true);
+        }
+
+        private void ToggleSkillAndItemUI(bool isEnabled) {
+            skillUIHandler.ToggleUI(isEnabled);
+            itemUIHandler.ToggleUI(isEnabled);
+        }
+        
+        private void ToggleButtonClick<T>(T uiHandler) where T : UIHandler {
+            bool isInteractable = uiHandler.IsInteractable;
+            ToggleSkillAndItemUI(false);
+            
+            if (typeof(T) == typeof(SkillUIHandler)) {
+                skillUIHandler.ToggleUI(!isInteractable);
+            } else if (typeof(T) == typeof(ItemUIHandler)) {
+                itemUIHandler.ToggleUI(!isInteractable);
+            }
         }
     }
 }

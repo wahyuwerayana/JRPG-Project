@@ -16,8 +16,8 @@ MonoBehaviour:
   <portrait>k__BackingField: {fileID: 21300000, guid: 748a47ef2043f9d449fdb21c5c3a3dac, type: 3}
   <MoveSpeed>k__BackingField: 0
   <RotationSpeed>k__BackingField: 0
-  <Health>k__BackingField: 35
-  <Attack>k__BackingField: 8
+  <Health>k__BackingField: 25
+  <Attack>k__BackingField: 5
   <MP>k__BackingField: 50
   <Defense>k__BackingField: 4
   BasicAttack: {fileID: 11400000, guid: 886c2fec788c00043938761b466d5619, type: 2}

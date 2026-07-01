@@ -8,13 +8,19 @@ namespace Game.UI {
 
         protected virtual void OnEnable() {
             GameEventManager.Instance.PlayerEvent.OnPlayerActionSelected += HandlePlayerActionSelected;
+            GameEventManager.Instance.PlayerEvent.OnPlayerItemSelected += HandlePlayerItemSelected;
         }
         
         protected virtual void OnDisable() {
             GameEventManager.Instance.PlayerEvent.OnPlayerActionSelected -= HandlePlayerActionSelected;
+            GameEventManager.Instance.PlayerEvent.OnPlayerItemSelected -= HandlePlayerItemSelected;
         }
         
         private void HandlePlayerActionSelected(SkillDataSO skill) {
+            ToggleUI(false);
+        }
+
+        private void HandlePlayerItemSelected(ItemSO item) {
             ToggleUI(false);
         }
 
@@ -23,5 +29,7 @@ namespace Game.UI {
             UICanvasGroup.interactable = isInteractable;
             UICanvasGroup.blocksRaycasts = isInteractable;
         }
+        
+        public bool IsInteractable => UICanvasGroup.interactable;
     }
 }
