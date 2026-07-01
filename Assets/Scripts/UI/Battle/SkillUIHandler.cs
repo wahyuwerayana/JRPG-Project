@@ -33,7 +33,7 @@ namespace Game.UI {
             }
         }
         
-        private void SetSkillsAvailability(UnitCombatBase unit, float currentMP, float mpUsed) {
+        private void SetSkillsAvailability(UnitCombatBase unit, float currentMP, float mpBefore) {
             if (unit is not PlayerCombat)
                 return;
 

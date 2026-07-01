@@ -15,7 +15,7 @@ namespace Game.UI {
             itemImage.sprite = referencedItem.Icon;
             
             itemButton.onClick.AddListener(() => {
-                GameEventManager.Instance.BattleEvent.RaiseOnPlayerItemSelected(referencedItem);
+                GameEventManager.Instance.PlayerEvent.RaiseOnPlayerItemSelected(referencedItem);
                 Destroy(gameObject);
             });
         }

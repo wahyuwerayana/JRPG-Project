@@ -19,7 +19,7 @@ namespace Game.UI {
         }
 
         private void OnSkillButtonClick() {
-            GameEventManager.Instance.BattleEvent.RaiseOnPlayerActionSelected(skillData);
+            GameEventManager.Instance.PlayerEvent.RaiseOnPlayerActionSelected(skillData);
         }
         
         public void SetSkillAvailability(float currentMP) {

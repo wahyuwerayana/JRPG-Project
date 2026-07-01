@@ -1,4 +1,6 @@
 using System;
+using DG.Tweening;
+using Game.Audio;
 using Game.Gameplay;
 using Game.Managers;
 using TMPro;
@@ -39,23 +41,38 @@ namespace Game.UI {
         }
         
         private void UpdateText(float statsHealth, float statsMp) {
-            healthText.text = $"{statsHealth:F0} / {healthSlider.maxValue:F0}";
-            manaText.text = $"{statsMp:F0} / {manaSlider.maxValue:F0}";
+            DOTween.To(() => healthSlider.value, 
+                x => healthText.text = $"{x:F0} / {healthSlider.maxValue:F0}", 
+                statsHealth, 
+                Const.Tween.DURATION)
+                .OnUpdate(() =>
+            {
+                healthText.text = $"{healthSlider.value:F0} / {healthSlider.maxValue:F0}";
+            });
+            
+            DOTween.To(() => manaSlider.value, 
+                x => manaText.text = $"{x:F0} / {manaSlider.maxValue:F0}", 
+                statsMp, 
+                Const.Tween.DURATION)
+                .OnUpdate(() =>
+            {
+                manaText.text = $"{manaSlider.value:F0} / {manaSlider.maxValue:F0}";
+            });
         }
 
-        private void UpdateHealthUI(UnitCombatBase unit, float currentHealth, float damageAmount) {
+        private void UpdateHealthUI(UnitCombatBase unit, float currentHealth, float healthBefore) {
             if (unit is not PlayerCombat)
                 return;
             
-            healthSlider.value = currentHealth;
+            healthSlider.DOValue(currentHealth, Const.Tween.DURATION).SetEase(Ease.OutQuad);
             UpdateText(currentHealth, manaSlider.value);
         }
         
-        private void UpdateManaUI(UnitCombatBase unit, float currentMana, float manaUsed) {
+        private void UpdateManaUI(UnitCombatBase unit, float currentMana, float mpBefore) {
             if (unit is not PlayerCombat)
                 return;
-
-            manaSlider.value = currentMana;
+            
+            manaSlider.DOValue(currentMana, Const.Tween.DURATION).SetEase(Ease.OutQuad);
             UpdateText(healthSlider.value, currentMana);
         }
     }

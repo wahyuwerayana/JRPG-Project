@@ -30,7 +30,7 @@ namespace Game.UI {
         }
 
         private void Init(PlayerCombat player) {
-            attackButton.onClick.AddListener(() => GameEventManager.Instance.BattleEvent.RaiseOnPlayerActionSelected(player.Stats.BasicAttack));
+            attackButton.onClick.AddListener(() => GameEventManager.Instance.PlayerEvent.RaiseOnPlayerActionSelected(player.Stats.BasicAttack));
             skillButton.onClick.AddListener(() => skillUIHandler.ToggleUI(true));
             itemButton.onClick.AddListener(() => itemUIHandler.ToggleUI(true));
             runButton.onClick.AddListener(player.TryRun);

@@ -21,6 +21,10 @@ namespace Game.Events
 
         public event UnityAction OnInventoryChanged;
         
+        // Battle
+        public event UnityAction<SkillDataSO> OnPlayerActionSelected;
+        public event UnityAction<ItemSO> OnPlayerItemSelected;
+        
         public void RaiseOnInteractStarted(IInteractable interactable) {
             OnInteractStarted?.Invoke(interactable);
         }
@@ -39,6 +43,14 @@ namespace Game.Events
         
         public void RaiseOnInventoryChanged() {
             OnInventoryChanged?.Invoke();
+        }
+        
+        public void RaiseOnPlayerActionSelected(SkillDataSO skillData) {
+            OnPlayerActionSelected?.Invoke(skillData);
+        }
+
+        public void RaiseOnPlayerItemSelected(ItemSO item) {
+            OnPlayerItemSelected?.Invoke(item);
         }
     }
 }

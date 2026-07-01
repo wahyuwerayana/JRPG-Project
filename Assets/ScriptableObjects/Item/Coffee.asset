@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Coffee
   m_EditorClassIdentifier: Assembly-CSharp:Game.Gameplay:UsableItemSO
   Name: Coffee
-  Description: 
+  Description: Heals 5 HP
   Icon: {fileID: 0}
   itemEffects:
-  - rid: 2809192421478367424
+  - rid: 2809192421478367495
   references:
     version: 2
     RefIds:
-    - rid: 2809192421478367424
+    - rid: 2809192421478367495
       type: {class: HealEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
       data:
         baseAmount: 5

@@ -118,17 +118,19 @@ namespace Game.Gameplay {
             
             if(isWin) {
                 ChangeState(BattleState.Win);
-                StartCoroutine(WinBattleCoroutine());
                 GameEventManager.Instance.BattleEvent.RaiseOnWin(spawner.BattleContext.CurrentBattleData);
             } else {
                 ChangeState(BattleState.Lose);
                 GameEventManager.Instance.BattleEvent.RaiseOnLose();
             }
+            
+            StartCoroutine(EndBattleCoroutine());
         }
         
-        private IEnumerator WinBattleCoroutine() {
-            yield return new WaitForSeconds(1f);
+        private IEnumerator EndBattleCoroutine() {
+            yield return new WaitForSeconds(2f);
             
+            AudioManager.Instance.ResumePreviousBGM();
             SceneController.UnloadScene(SceneController.GetCurrentActiveScene());
         }
 

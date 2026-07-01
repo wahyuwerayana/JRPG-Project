@@ -26,8 +26,10 @@ namespace Game.Gameplay {
                 effect.Execute(this, target);
             }
 
+            float mpBeforeUsed = currentMP;
             currentMP -= skillData.MPCost;
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, skillData.MPCost);
+            
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpBeforeUsed);
             
             GameEventManager.Instance.BattleEvent.RaiseOnUnitAttack(this, skillData);
         }
@@ -35,9 +37,10 @@ namespace Game.Gameplay {
         public virtual void TakeDamage(float damageAmount) {
             float actualDamage = CombatUtils.CalculateDamage(damageAmount, Stats.Defense);
             
+            float healthBeforeDamaged = currentHealth;
             currentHealth = Mathf.Clamp(currentHealth - actualDamage, 0f, Stats.Health);
             
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitDamaged(this, currentHealth, actualDamage);
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitDamaged(this, currentHealth, healthBeforeDamaged);
             
             if (currentHealth <= 0f) {
                 Die();
@@ -51,15 +54,19 @@ namespace Game.Gameplay {
         }
 
         public virtual void RegenMP(float mpAmount) {
+            float mpBeforeChange = currentMP;
+            
             currentMP = Mathf.Clamp(currentMP + mpAmount, 0f, Stats.MP);
             
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpAmount);
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpBeforeChange);
         }
         
         public virtual void TakeMP(float mpAmount) {
+            float mpBeforeChange = currentMP;
+            
             currentMP = Mathf.Clamp(currentMP - mpAmount, 0f, Stats.MP);
             
-            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpAmount);
+            GameEventManager.Instance.BattleEvent.RaiseOnUnitMPChanged(this, currentMP, mpBeforeChange);
         }
 
         protected virtual void Die() {

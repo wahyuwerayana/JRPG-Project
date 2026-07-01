@@ -14,15 +14,15 @@ namespace Game.Gameplay {
 
         private void OnEnable() {
             GameEventManager.Instance.BattleEvent.OnPlayerSpawned += OnPlayerSpawned;
-            GameEventManager.Instance.BattleEvent.OnPlayerActionSelected += HandlePlayerActionSelected;
-            GameEventManager.Instance.BattleEvent.OnPlayerItemSelected += HandlePlayerItemSelected;
+            GameEventManager.Instance.PlayerEvent.OnPlayerActionSelected += HandlePlayerActionSelected;
+            GameEventManager.Instance.PlayerEvent.OnPlayerItemSelected += HandlePlayerItemSelected;
             inputReader.Click += HandleTargetClick;
         }
         
         private void OnDisable() {
             GameEventManager.Instance.BattleEvent.OnPlayerSpawned -= OnPlayerSpawned;
-            GameEventManager.Instance.BattleEvent.OnPlayerActionSelected -= HandlePlayerActionSelected;
-            GameEventManager.Instance.BattleEvent.OnPlayerItemSelected -= HandlePlayerItemSelected;
+            GameEventManager.Instance.PlayerEvent.OnPlayerActionSelected -= HandlePlayerActionSelected;
+            GameEventManager.Instance.PlayerEvent.OnPlayerItemSelected -= HandlePlayerItemSelected;
             inputReader.Click -= HandleTargetClick;
         }
 

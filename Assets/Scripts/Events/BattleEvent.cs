@@ -7,9 +7,6 @@ namespace Game.Events {
         public event UnityAction OnEnd;
         
         public event UnityAction<BattleState> OnBattleStateChanged;
-
-        public event UnityAction<SkillDataSO> OnPlayerActionSelected;
-        public event UnityAction<ItemSO> OnPlayerItemSelected;
         
         public event UnityAction<PlayerCombat> OnPlayerSpawned;
         public event UnityAction<EnemyCombat> OnEnemySpawned;
@@ -44,17 +41,9 @@ namespace Game.Events {
         public void RaiseOnPlayerSpawned(PlayerCombat playerUnit) {
             OnPlayerSpawned?.Invoke(playerUnit);
         }
-        
-        public void RaiseOnPlayerActionSelected(SkillDataSO skillData) {
-            OnPlayerActionSelected?.Invoke(skillData);
-        }
 
-        public void RaiseOnPlayerItemSelected(ItemSO item) {
-            OnPlayerItemSelected?.Invoke(item);
-        }
-
-        public void RaiseOnUnitDamaged(UnitCombatBase damagedUnit, float currentHealth, float damageAmount) {
-            OnUnitDamaged?.Invoke(damagedUnit, currentHealth, damageAmount);
+        public void RaiseOnUnitDamaged(UnitCombatBase damagedUnit, float currentHealth, float healthBeforeDamaged) {
+            OnUnitDamaged?.Invoke(damagedUnit, currentHealth, healthBeforeDamaged);
         }
         
         public void RaiseOnUnitAttack(UnitCombatBase caster, SkillDataSO skillData) {
@@ -73,8 +62,8 @@ namespace Game.Events {
             OnUnitDied?.Invoke(diedUnit);
         }
         
-        public void RaiseOnUnitMPChanged(UnitCombatBase unit, float currentMP, float mpUsed) {
-            OnUnitMPChanged?.Invoke(unit, currentMP, mpUsed);
+        public void RaiseOnUnitMPChanged(UnitCombatBase unit, float currentMP, float mpBeforeUsed) {
+            OnUnitMPChanged?.Invoke(unit, currentMP, mpBeforeUsed);
         }
 
         public void RaiseOnWin(BattleData battleData) {

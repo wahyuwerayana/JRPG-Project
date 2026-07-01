@@ -25,4 +25,12 @@ MonoBehaviour:
       asset: {fileID: 102900000, guid: d1d534533e23f7046bfbd56ff130ac21, type: 3}
       guid: d1d534533e23f7046bfbd56ff130ac21
     <AudioClip>k__BackingField: {fileID: 8300000, guid: 98e96b2d764a24b2291026ed45e4bcee, type: 3}
+  - <SceneRef>k__BackingField:
+      asset: {fileID: 102900000, guid: ae7cdd95e2a587a4ebfbc61c6b7fde60, type: 3}
+      guid: ae7cdd95e2a587a4ebfbc61c6b7fde60
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: af091e6de4dc8e544b4c092b8dcc1ca6, type: 3}
+  - <SceneRef>k__BackingField:
+      asset: {fileID: 102900000, guid: c6e371a8736fa0243812147aaf1bf92d, type: 3}
+      guid: c6e371a8736fa0243812147aaf1bf92d
+    <AudioClip>k__BackingField: {fileID: 8300000, guid: 964e55f214673364e9f5bdefe3b333e7, type: 3}
   <SFXAudioPairs>k__BackingField: []

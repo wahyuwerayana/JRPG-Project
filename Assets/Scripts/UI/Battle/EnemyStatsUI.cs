@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Game.Gameplay;
 using Game.Managers;
 using TMPro;
@@ -32,12 +33,20 @@ namespace Game.UI {
             GameEventManager.Instance.BattleEvent.OnUnitMPChanged -= HandleUnitMPChanged;
         }
         
-        private void HandleUnitDamaged(UnitCombatBase unit, float currentHealth, float damageAmount) {
+        private void HandleUnitDamaged(UnitCombatBase unit, float currentHealth, float healthBeforeDamaged) {
             if (unit != enemyUnit)
                 return;
                 
-            enemyHealthText.text = $"{currentHealth} / {unit.Stats.Health}";
+            float tweenHealth = healthBeforeDamaged;
             
+            DOTween.To(() => tweenHealth, 
+                x => tweenHealth = x, 
+                currentHealth, 
+                Const.Tween.DURATION)
+                .SetEase(Ease.OutQuad)
+                .OnUpdate(() => {
+                    enemyHealthText.text = $"{tweenHealth:F0} / {unit.Stats.Health:F0}";
+                });
         }
 
         private void HandleUnitDied(UnitCombatBase unit) {
@@ -47,11 +56,20 @@ namespace Game.UI {
             Destroy(gameObject);
         }
 
-        private void HandleUnitMPChanged(UnitCombatBase unit, float currentMP, float mpChangeAmount) {
+        private void HandleUnitMPChanged(UnitCombatBase unit, float currentMP, float mpBefore) {
             if (unit != enemyUnit)
                 return;
 
-            enemyManaText.text = $"{currentMP} / {unit.Stats.MP}";
+            float tweenMp = mpBefore;
+            
+            DOTween.To(() => tweenMp, 
+                x => tweenMp = x,
+                currentMP, 
+                Const.Tween.DURATION)
+                .SetEase(Ease.OutQuad)
+                .OnUpdate(() => {
+                    enemyManaText.text = $"{tweenMp:F0} / {unit.Stats.MP:F0}";
+                });
         }
     }
 }

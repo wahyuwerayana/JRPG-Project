@@ -7,11 +7,11 @@ namespace Game.UI {
         [SerializeField] private CanvasGroup UICanvasGroup;
 
         protected virtual void OnEnable() {
-            GameEventManager.Instance.BattleEvent.OnPlayerActionSelected += HandlePlayerActionSelected;
+            GameEventManager.Instance.PlayerEvent.OnPlayerActionSelected += HandlePlayerActionSelected;
         }
         
         protected virtual void OnDisable() {
-            GameEventManager.Instance.BattleEvent.OnPlayerActionSelected -= HandlePlayerActionSelected;
+            GameEventManager.Instance.PlayerEvent.OnPlayerActionSelected -= HandlePlayerActionSelected;
         }
         
         private void HandlePlayerActionSelected(SkillDataSO skill) {
