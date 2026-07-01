@@ -31,31 +31,31 @@ namespace Game.Gameplay {
         }
         
         private void HandlePlayerActionSelected(SkillDataSO selectedSkill) {
-            if(BattleHandler.Instance.CurrentState != BattleState.PlayerTurn)
+            if(BattleHandler.Instance.CurrentState != BattleState.Player_Turn)
                 return;
             
             queuedSkill = selectedSkill;
             
             if(queuedSkill.IsRequiredSelectingTarget)
-                BattleHandler.Instance.ChangeState(BattleState.SelectingTarget);
+                BattleHandler.Instance.ChangeState(BattleState.Selecting_Target);
             else {
-                BattleHandler.Instance.ChangeState(BattleState.Attacking);
+                BattleHandler.Instance.ChangeState(BattleState.Executing);
                 
                 playerUnit.ExecuteSkillAction(queuedSkill, null);
             }
         }
         
         private void HandlePlayerItemSelected(ItemSO selectedItem) {
-            if(BattleHandler.Instance.CurrentState != BattleState.PlayerTurn)
+            if(BattleHandler.Instance.CurrentState != BattleState.Player_Turn)
                 return;
             
-            BattleHandler.Instance.ChangeState(BattleState.Attacking);
+            BattleHandler.Instance.ChangeState(BattleState.Executing);
             
             playerUnit.ExecuteItemAction(selectedItem);
         }
 
         private void HandleTargetClick() {
-            if(BattleHandler.Instance.CurrentState != BattleState.SelectingTarget)
+            if(BattleHandler.Instance.CurrentState != BattleState.Selecting_Target)
                 return;
 
             Vector2 screenPos = inputReader.PointerPosition;
@@ -67,7 +67,7 @@ namespace Game.Gameplay {
             if (!hit.collider.TryGetComponent<EnemyCombat>(out EnemyCombat targetEnemy))
                 return;
 
-            BattleHandler.Instance.ChangeState(BattleState.Attacking);
+            BattleHandler.Instance.ChangeState(BattleState.Executing);
                     
             playerUnit.ExecuteSkillAction(queuedSkill, targetEnemy);
         }

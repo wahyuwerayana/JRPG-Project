@@ -6,10 +6,10 @@ using UnityEngine;
 namespace Game.Gameplay {
     public enum BattleState {
         Initializing,
-        PlayerTurn,
-        SelectingTarget,
-        Attacking,
-        EnemyTurn,
+        Player_Turn,
+        Selecting_Target,
+        Executing,
+        Enemy_Turn,
         Win,
         Lose,
     }
@@ -110,7 +110,7 @@ namespace Game.Gameplay {
             
             GameEventManager.Instance.BattleEvent.RaiseOnStart();
             
-            ChangeState(BattleState.PlayerTurn);
+            ChangeState(BattleState.Player_Turn);
         }
         
         private void EndBattle(bool isWin) {
@@ -141,7 +141,7 @@ namespace Game.Gameplay {
 
         private IEnumerator EnemyTurnTransition() {
             yield return new WaitForSeconds(1f);
-            ChangeState(BattleState.EnemyTurn);
+            ChangeState(BattleState.Enemy_Turn);
 
             currentEnemyTurnIdx = 0;
             ExecuteNextEnemyTurn();
@@ -152,7 +152,7 @@ namespace Game.Gameplay {
                 return;
             
             if(currentEnemyTurnIdx >= activeEnemies.Count) {
-                ChangeState(BattleState.PlayerTurn);
+                ChangeState(BattleState.Player_Turn);
                 return;
             }
 
@@ -164,7 +164,7 @@ namespace Game.Gameplay {
         }
 
         private void EndEnemyTurn() {
-            if (CurrentState != BattleState.EnemyTurn)
+            if (CurrentState != BattleState.Enemy_Turn)
                 return;
 
             currentEnemyTurnIdx++;

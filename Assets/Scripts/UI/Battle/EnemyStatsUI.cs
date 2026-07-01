@@ -46,7 +46,7 @@ namespace Game.UI {
             DOTween.To(() => tweenHealth, 
                 x => tweenHealth = x, 
                 currentHealth, 
-                Const.Tween.DURATION)
+                Const.Tween.FADE_DURATION)
                 .SetEase(Ease.OutQuad)
                 .OnUpdate(() => {
                     enemyHealthText.text = $"{tweenHealth:F0} / {unit.Stats.Health:F0}";
@@ -69,7 +69,7 @@ namespace Game.UI {
             DOTween.To(() => tweenMp, 
                 x => tweenMp = x,
                 currentMP, 
-                Const.Tween.DURATION)
+                Const.Tween.FADE_DURATION)
                 .SetEase(Ease.OutQuad)
                 .OnUpdate(() => {
                     enemyManaText.text = $"{tweenMp:F0} / {unit.Stats.MP:F0}";

@@ -10,7 +10,10 @@ namespace Game.Const {
     }
 
     public class Tween {
-        public const float DURATION = 1.5f;
+        public const float FADE_DURATION = 1.5f;
+        public const float MOVE_DURATION = 3f;
+
+        public const float MOVE_OFFSET_Y = 5f;
     }
     
     public class Battle {

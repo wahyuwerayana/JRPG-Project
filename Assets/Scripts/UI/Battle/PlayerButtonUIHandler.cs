@@ -46,7 +46,7 @@ namespace Game.UI {
         }
 
         private void OnPlayerTurn(BattleState state) {
-            if(state != BattleState.PlayerTurn)
+            if(state != BattleState.Player_Turn)
                 return;
             
             ToggleSkillAndItemUI(false);
