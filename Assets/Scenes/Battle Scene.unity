@@ -7115,7 +7115,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &263796648
 MonoBehaviour:
@@ -26371,10 +26371,10 @@ MonoBehaviour:
   m_Padding:
     m_Left: 0
     m_Right: 20
-    m_Top: 0
+    m_Top: 20
     m_Bottom: 0
-  m_ChildAlignment: 5
-  m_Spacing: 20
+  m_ChildAlignment: 2
+  m_Spacing: 25
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -32961,6 +32961,7 @@ GameObject:
   - component: {fileID: 1287468890}
   - component: {fileID: 1287468892}
   - component: {fileID: 1287468893}
+  - component: {fileID: 1287468894}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -33110,6 +33111,14 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!81 &1287468894
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287468888}
+  m_Enabled: 1
 --- !u!1001 &1288332513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36881,8 +36890,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -121.713745, y: 264.71002}
-  m_SizeDelta: {x: 877.1726, y: 200}
+  m_AnchoredPosition: {x: -347.19208, y: 127.47534}
+  m_SizeDelta: {x: 468.7147, y: 200}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1440720413
 MonoBehaviour:

@@ -16,11 +16,11 @@ MonoBehaviour:
   Description: Heals 5 HP
   Icon: {fileID: 0}
   itemEffects:
-  - rid: 2809192421478367495
+  - rid: 2809192421478367732
   references:
     version: 2
     RefIds:
-    - rid: 2809192421478367495
+    - rid: 2809192421478367732
       type: {class: HealEffect, ns: Game.Gameplay, asm: Assembly-CSharp}
       data:
         baseAmount: 5
