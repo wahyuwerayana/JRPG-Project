@@ -1,6 +1,4 @@
-using System;
 using Game.Events;
-using Game.Settings;
 using UnityEngine;
 
 namespace Game.Managers {
@@ -11,6 +9,9 @@ namespace Game.Managers {
         public BattleEvent BattleEvent { get; private set; } = new BattleEvent();
         public PlayerEvent PlayerEvent { get; private set; } = new PlayerEvent();
         public EnemyEvent EnemyEvent { get; private set; } = new EnemyEvent();
+        
+        //GameState
+        public GameStateEvent GameStateEvent { get; private set; } = new GameStateEvent();
 
         private void Awake() {
             if(Instance != null) {
