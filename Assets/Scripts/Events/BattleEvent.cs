@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 namespace Game.Events {
     public class BattleEvent {
-        public event UnityAction OnStart;
-        public event UnityAction OnEnd;
+        public event UnityAction OnStarted;
+        public event UnityAction OnEnded;
         
         public event UnityAction<BattleState> OnBattleStateChanged;
         
@@ -22,12 +22,12 @@ namespace Game.Events {
         public event UnityAction<BattleData> OnWin;
         public event UnityAction OnLose;
 
-        public void RaiseOnStart() {
-            OnStart?.Invoke();
+        public void RaiseOnStarted() {
+            OnStarted?.Invoke();
         }
         
-        public void RaiseOnEnd() {
-            OnEnd?.Invoke();
+        public void RaiseOnEnded() {
+            OnEnded?.Invoke();
         }
         
         public void RaiseOnBattleStateChanged(BattleState state) {

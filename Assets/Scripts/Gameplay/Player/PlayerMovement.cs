@@ -25,8 +25,8 @@ namespace Game.Gameplay {
         private void OnEnable() {
             inputReader.Move += ReadMoveInput;
 
-            GameEventManager.Instance.BattleEvent.OnStart += LockMovement;
-            GameEventManager.Instance.BattleEvent.OnEnd += UnlockMovement;
+            GameEventManager.Instance.BattleEvent.OnStarted += LockMovement;
+            GameEventManager.Instance.BattleEvent.OnEnded += UnlockMovement;
 
             GameEventManager.Instance.PlayerEvent.OnInteractStarted += LockMovement;
             GameEventManager.Instance.PlayerEvent.OnInteractEnded += UnlockMovement;
@@ -35,8 +35,8 @@ namespace Game.Gameplay {
         private void OnDisable() {
             inputReader.Move -= ReadMoveInput;
             
-            GameEventManager.Instance.BattleEvent.OnStart -= LockMovement;
-            GameEventManager.Instance.BattleEvent.OnEnd -= UnlockMovement;
+            GameEventManager.Instance.BattleEvent.OnStarted -= LockMovement;
+            GameEventManager.Instance.BattleEvent.OnEnded -= UnlockMovement;
 
             GameEventManager.Instance.PlayerEvent.OnInteractStarted -= LockMovement;
             GameEventManager.Instance.PlayerEvent.OnInteractEnded -= UnlockMovement;

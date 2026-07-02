@@ -18,13 +18,13 @@ namespace Game.Gameplay {
         [SerializeField] private FadeOverlayHandler fader;
 
         private void OnEnable() {
+            GameEventManager.Instance.BattleEvent.OnEnded += HandleBattleEnd;
             GameEventManager.Instance.BattleEvent.OnWin += HandlePlayerWin;
-            GameEventManager.Instance.BattleEvent.OnEnd += HandleBattleEnd;
         }
 
         private void OnDisable() {
+            GameEventManager.Instance.BattleEvent.OnEnded -= HandleBattleEnd;
             GameEventManager.Instance.BattleEvent.OnWin -= HandlePlayerWin;
-            GameEventManager.Instance.BattleEvent.OnEnd -= HandleBattleEnd;
         }
 
         private void HandlePlayerWin(BattleData winBattleData) {

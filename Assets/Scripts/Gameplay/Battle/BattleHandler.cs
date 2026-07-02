@@ -116,7 +116,7 @@ namespace Game.Gameplay {
             if(fader != null)
                 await fader.FadeInAsync();
             
-            GameEventManager.Instance.BattleEvent.RaiseOnStart();
+            GameEventManager.Instance.BattleEvent.RaiseOnStarted();
             
             ChangeState(BattleState.Player_Turn);
         }
@@ -137,7 +137,7 @@ namespace Game.Gameplay {
             await Awaitable.WaitForSecondsAsync(1f);
             
             AudioManager.Instance.ResumePreviousBGM();
-            GameEventManager.Instance.BattleEvent.RaiseOnEnd();
+            GameEventManager.Instance.BattleEvent.RaiseOnEnded();
 
             if (fader != null) {
                 await SceneController.UnloadSceneWithFade(SceneController.GetCurrentActiveScene(), fader);

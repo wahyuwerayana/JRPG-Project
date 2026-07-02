@@ -42,7 +42,7 @@ public class BattleStateUI : MonoBehaviour
         runningTweenSequence = DOTween.Sequence();
         
         // Run Fade and Move tween at the same time
-        runningTweenSequence.Append(battleUICanvasGroup.DOFade(1f, Game.Const.Tween.FADE_DURATION)
+        runningTweenSequence.Append(battleUICanvasGroup.DOFade(1f, Game.Const.Tween.FADE_GENERAL_DURATION)
             .SetEase(Ease.OutQuad));
         
         runningTweenSequence.Join(transform.DOMoveY(initialPos.y + Game.Const.Tween.MOVE_OFFSET_Y, Game.Const.Tween.MOVE_DURATION)
@@ -50,7 +50,7 @@ public class BattleStateUI : MonoBehaviour
         );
 
         // Run fade tween after the previous sequence is finished
-        runningTweenSequence.Append(battleUICanvasGroup.DOFade(0f, Game.Const.Tween.FADE_DURATION)
+        runningTweenSequence.Append(battleUICanvasGroup.DOFade(0f, Game.Const.Tween.FADE_GENERAL_DURATION)
             .SetEase(Ease.InQuad));
     }
 }

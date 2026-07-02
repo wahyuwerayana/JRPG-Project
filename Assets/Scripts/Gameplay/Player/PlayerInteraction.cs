@@ -15,21 +15,23 @@ namespace Game.Gameplay {
         private void OnEnable() {
             inputReader.Interact += TryInteract;
             
-            GameEventManager.Instance.BattleEvent.OnStart += LockInteraction;
-            GameEventManager.Instance.BattleEvent.OnEnd += UnlockInteraction;
+            GameEventManager.Instance.BattleEvent.OnStarted += LockInteraction;
+            GameEventManager.Instance.BattleEvent.OnEnded += UnlockInteraction;
             
             GameEventManager.Instance.PlayerEvent.OnInteractStarted += LockInteraction;
             GameEventManager.Instance.PlayerEvent.OnInteractEnded += UnlockInteraction;
+            GameEventManager.Instance.PlayerEvent.OnInteractEnded += SyncInteractableCount;
         }
         
         private void OnDisable() {
             inputReader.Interact -= TryInteract;
             
-            GameEventManager.Instance.BattleEvent.OnStart -= LockInteraction;
-            GameEventManager.Instance.BattleEvent.OnEnd -= UnlockInteraction;
+            GameEventManager.Instance.BattleEvent.OnStarted -= LockInteraction;
+            GameEventManager.Instance.BattleEvent.OnEnded -= UnlockInteraction;
             
             GameEventManager.Instance.PlayerEvent.OnInteractStarted -= LockInteraction;
             GameEventManager.Instance.PlayerEvent.OnInteractEnded -= UnlockInteraction;
+            GameEventManager.Instance.PlayerEvent.OnInteractEnded -= SyncInteractableCount;
         }
 
         private void TryInteract() {
@@ -58,6 +60,7 @@ namespace Game.Gameplay {
                 return;
             
             interactablesInRange.Add(interactable);
+            GameEventManager.Instance.PlayerEvent.RaiseOnInteractableInRangeChanged(interactablesInRange);
         }
 
         private void OnTriggerExit(Collider other) {
@@ -68,6 +71,7 @@ namespace Game.Gameplay {
                 return;
 
             interactablesInRange.Remove(interactable);
+            GameEventManager.Instance.PlayerEvent.RaiseOnInteractableInRangeChanged(interactablesInRange);
         }
         
         private IInteractable GetClosestInteractable() {
@@ -75,7 +79,7 @@ namespace Game.Gameplay {
             float closestDistance = float.MaxValue;
             Vector3 playerPosition = transform.position;
 
-            interactablesInRange.RemoveAll(item => item == null || item.Equals(null));
+            SyncInteractableCount();
 
             foreach(IInteractable interactable in interactablesInRange.Where(interactable => interactable.IsAvailableForInteract())) {
                 if(interactable is not MonoBehaviour interactableMB)
@@ -89,6 +93,15 @@ namespace Game.Gameplay {
             }
 
             return closestInteractable;
+        }
+        
+        private void SyncInteractableCount() {
+            int removedItems = interactablesInRange.RemoveAll(item => item == null || 
+                                                                      item.Equals(null) || 
+                                                                      !item.IsAvailableForInteract());
+            
+            if(removedItems > 0)
+                GameEventManager.Instance.PlayerEvent.RaiseOnInteractableInRangeChanged(interactablesInRange);
         }
 
         #region Locking

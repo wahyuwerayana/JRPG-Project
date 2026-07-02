@@ -7,6 +7,7 @@ namespace Game.Gameplay.NPC {
         
         public void Interact() {
             flowchart.gameObject.SetActive(true);
+            flowchart = null;
         }
         
         public bool IsAvailableForInteract() {

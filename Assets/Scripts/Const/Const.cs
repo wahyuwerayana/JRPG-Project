@@ -7,9 +7,11 @@ namespace Game.Const {
     }
 
     public class Tween {
-        public const float FADE_DURATION = 1.5f;
+        public const float FADE_GENERAL_DURATION = 1.5f;
+        public const float FADE_INTERACT_DURATION = 0.5f;
+        public const float TEXT_TWEEN_DURATION = 1f;
+        public const float SLIDER_TWEEN_DURATION = 1f;
         public const float MOVE_DURATION = 3f;
-
         public const float MOVE_OFFSET_Y = 5f;
     }
     

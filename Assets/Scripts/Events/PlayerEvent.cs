@@ -1,7 +1,6 @@
+using System.Collections.Generic;
 using Game.Gameplay;
-using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
 
 namespace Game.Events
 {
@@ -18,6 +17,7 @@ namespace Game.Events
         /// Raised when the player stopped interacting to an IInteractable object
         /// </summary>
         public event UnityAction OnInteractEnded;
+        public event UnityAction<List<IInteractable>> OnInteractableInRangeChanged;
 
         public event UnityAction OnInventoryChanged;
         
@@ -31,6 +31,10 @@ namespace Game.Events
         
         public void RaiseOnInteractEnded() {
             OnInteractEnded?.Invoke();
+        }
+        
+        public void RaiseOnInteractableInRangeChanged(List<IInteractable> interactables) {
+            OnInteractableInRangeChanged?.Invoke(interactables);
         }
         
         public void RaiseOnMoveStarted() {

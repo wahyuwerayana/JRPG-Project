@@ -48,27 +48,29 @@ namespace Game.UI {
             DOTween.To(() => healthSlider.value, 
                 x => healthText.text = $"{x:F0} / {healthSlider.maxValue:F0}", 
                 statsHealth, 
-                Const.Tween.FADE_DURATION)
+                Const.Tween.TEXT_TWEEN_DURATION)
                 .OnUpdate(() =>
             {
                 healthText.text = $"{healthSlider.value:F0} / {healthSlider.maxValue:F0}";
-            });
+            })
+                .SetEase(Ease.OutQuad);
             
             DOTween.To(() => manaSlider.value, 
                 x => manaText.text = $"{x:F0} / {manaSlider.maxValue:F0}", 
                 statsMp, 
-                Const.Tween.FADE_DURATION)
+                Const.Tween.TEXT_TWEEN_DURATION)
                 .OnUpdate(() =>
             {
                 manaText.text = $"{manaSlider.value:F0} / {manaSlider.maxValue:F0}";
-            });
+            })
+                .SetEase(Ease.OutQuad);
         }
 
         private void UpdateHealthUI(UnitCombatBase unit, float currentHealth, float healthBefore) {
             if (unit is not PlayerCombat)
                 return;
             
-            healthSlider.DOValue(currentHealth, Const.Tween.FADE_DURATION).SetEase(Ease.OutQuad);
+            healthSlider.DOValue(currentHealth, Const.Tween.SLIDER_TWEEN_DURATION).SetEase(Ease.OutQuad);
             UpdateText(currentHealth, manaSlider.value);
         }
         
@@ -76,7 +78,7 @@ namespace Game.UI {
             if (unit is not PlayerCombat)
                 return;
             
-            manaSlider.DOValue(currentMana, Const.Tween.FADE_DURATION).SetEase(Ease.OutQuad);
+            manaSlider.DOValue(currentMana, Const.Tween.SLIDER_TWEEN_DURATION).SetEase(Ease.OutQuad);
             UpdateText(healthSlider.value, currentMana);
         }
     }
