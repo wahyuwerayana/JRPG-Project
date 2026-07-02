@@ -1,4 +1,4 @@
-namespace Game.Gameplay {
+namespace Game.Interface {
     public interface IDamageable {
         public void TakeDamage(float damageAmount);
     }

@@ -58,3 +58,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Managers.InputManager
   playerInputReader: {fileID: 11400000, guid: 9b75d83b6b143c74aa33c4140d268f2f, type: 2}
+  uiInputReader: {fileID: 11400000, guid: 79cc5c2a11afa154a8112631093babd1, type: 2}

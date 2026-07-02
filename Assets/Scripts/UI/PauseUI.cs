@@ -1,12 +1,28 @@
-using System;
+using Eflatun.SceneReference;
 using Game.Managers;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Game.UI {
+    [RequireComponent(typeof(CanvasGroup))]
     public class PauseUI : MonoBehaviour {
+        [Header("UI References")]
         [SerializeField] private Button resumeButton;
         [SerializeField] private Button exitButton;
+        
+        [Header("Scene Reference")]
+        [SerializeField] private SceneReference mainMenuScene;
+        
+        private CanvasGroup canvasGroup;
+        private PauseManager pauseManager;
+
+        private bool isExiting = false;
+        
+        private void Awake() {
+            canvasGroup = GetComponent<CanvasGroup>();
+            pauseManager = GetComponent<PauseManager>();
+        }
+        
         private void OnEnable() {
             GameEventManager.Instance.GameStateEvent.OnPauseToggled += HandlePauseToggle;
         }
@@ -15,17 +31,40 @@ namespace Game.UI {
             GameEventManager.Instance.GameStateEvent.OnPauseToggled -= HandlePauseToggle;
         }
 
-        private void HandlePauseToggle(bool isPaused) {
+        private void Start() {
+            SetUI(false);
             
+            resumeButton.onClick.AddListener(ResumeGame);
+            exitButton.onClick.AddListener(ExitGame);
         }
 
-        public void ResumeGame() {
-            Debug.Log("Resuming game...");
-            GameEventManager.Instance.GameStateEvent.RaiseOnPauseToggled(false);
+        private void HandlePauseToggle(bool isPaused) {
+            SetUI(isPaused);
+        }
+
+        private void SetUI(bool isVisible) {
+            canvasGroup.alpha = isVisible ? 1f : 0f;
+            canvasGroup.interactable = isVisible;
+            canvasGroup.blocksRaycasts = isVisible;
+        }
+
+        private void ResumeGame() {
+            pauseManager.TogglePause();
         }
         
-        public void ExitGame() {
-            Debug.Log("Exiting game...");
+        private void ExitGame() {
+            if (isExiting)
+                return;
+            
+            isExiting = true;
+            
+            Time.timeScale = 1f;
+            
+            FadeOverlayHandler fader = FindAnyObjectByType<FadeOverlayHandler>();
+            
+            _ = fader != null ? SceneController.LoadSceneWithFade(mainMenuScene, fader) : SceneController.LoadSceneAndSetActive(mainMenuScene);
+            
+            SetUI(false);
         }
     }
 }

@@ -1,7 +1,8 @@
 using Fungus;
+using Game.Interface;
 using UnityEngine;
 
-namespace Game.Gameplay.NPC {
+namespace Game.Gameplay {
     public class NPCInteractable : MonoBehaviour, IInteractable {
         [SerializeField] private Flowchart flowchart;
         

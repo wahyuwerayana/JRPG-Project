@@ -1,17 +1,12 @@
-using Game.Managers;
+using Game.Interface;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using static Game.Settings.MainInput;
 
 namespace Game.Settings {
-    public interface IInputReader {
-        public void EnablePlayerActions();
-        public void DisablePlayerActions();
-    }
-    
-    [CreateAssetMenu(fileName = "New Input Reader", menuName = "Scriptable Object/Input/Input Reader")]
-    public class PlayerInputReader : ScriptableObject, IPlayerActions, IInputReader {
+    [CreateAssetMenu(fileName = "New Input Reader", menuName = "Scriptable Object/Input/Player Input Reader")]
+    public class PlayerInputReader : ScriptableObject, IPlayerActions {
         /// <summary>
         /// Raised when the player used the move button on the controller they are using
         /// </summary>
@@ -26,23 +21,19 @@ namespace Game.Settings {
         /// Raised when the player press the click button on the controller they are using
         /// </summary>
         public event UnityAction Click = delegate { };
+        public event UnityAction Pause = delegate { };
 
         public MainInput inputActions;
 
         public Vector2 PointerPosition => inputActions.Player.PointerPosition.ReadValue<Vector2>();
 
-        public void EnablePlayerActions() {
-            if (inputActions == null) {
-                inputActions = new MainInput();
-                inputActions.Player.SetCallbacks(this);
-            }
-            
-            inputActions.Player.Enable();
+        public void Initialize(MainInput input) {
+            inputActions = input;
+            inputActions.Player.SetCallbacks(this);
         }
         
-        public void DisablePlayerActions() {
-            inputActions.Player.Disable();
-        }
+        public void EnablePlayer() => inputActions.Player.Enable();
+        public void DisablePlayer() => inputActions.Player.Disable();
         
         public void OnMove(InputAction.CallbackContext context) {
             Move?.Invoke(context.ReadValue<Vector2>());
@@ -60,6 +51,13 @@ namespace Game.Settings {
                 return;
                 
             Click?.Invoke();
+        }
+
+        public void OnPause(InputAction.CallbackContext context) {
+            if (!context.performed)
+                return;
+            
+            Pause?.Invoke();
         }
         
         public void OnPointerPosition(InputAction.CallbackContext context) { }

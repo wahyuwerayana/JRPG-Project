@@ -1,3 +1,4 @@
+using System;
 using Game.Settings;
 using UnityEngine;
 
@@ -5,7 +6,11 @@ namespace Game.Managers {
     public class InputManager : MonoBehaviour {
         public static InputManager Instance { get; private set; }
 
+        [Header("Input Readers")]
         [SerializeField] private PlayerInputReader playerInputReader;
+        [SerializeField] private UIInputReader uiInputReader;
+
+        private MainInput mainInput;
 
         private void Awake() {
             if(Instance != null) {
@@ -15,21 +20,30 @@ namespace Game.Managers {
             
             Instance = this;
             DontDestroyOnLoad(this);
-        }
 
-        private void OnEnable() {
-            SetPlayerInput(true);
+            mainInput = new MainInput();
+            
+            playerInputReader.Initialize(mainInput);
+            uiInputReader.Initialize(mainInput);
         }
         
         private void OnDisable() {
-            SetPlayerInput(false);
+            playerInputReader.DisablePlayer();
+            uiInputReader.DisableUI();
         }
 
-        public void SetPlayerInput(bool isEnabled) {
-            if(isEnabled)
-                playerInputReader.EnablePlayerActions();
-            else
-                playerInputReader.DisablePlayerActions();
+        private void Start() {
+            SetGameplayMode();
+        }
+
+        public void SetGameplayMode() {
+            uiInputReader.DisableUI();
+            playerInputReader.EnablePlayer();
+        }
+        
+        public void SetUIMode() {
+            playerInputReader.DisablePlayer();
+            uiInputReader.EnableUI();
         }
     }
 }
