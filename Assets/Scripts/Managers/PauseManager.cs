@@ -20,6 +20,13 @@ namespace Game.Managers {
             uiInputReader.Cancel -= HandleUICancel;
         }
 
+        private void Start() {
+            isPaused = false;
+            Time.timeScale = 1f;
+            
+            InputManager.Instance.SetGameplayMode();
+        }
+
         private void HandleUICancel() {
             if (!isPaused)
                 return;
