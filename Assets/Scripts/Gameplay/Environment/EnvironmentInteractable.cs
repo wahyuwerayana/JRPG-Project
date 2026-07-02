@@ -1,4 +1,3 @@
-using System;
 using Eflatun.SceneReference;
 using Game.Gameplay;
 using Game.UI;
@@ -9,12 +8,8 @@ namespace Gameplay.Environment {
         [SerializeField] private SceneReference sceneToLoad;
         [SerializeField] private FadeOverlayHandler fader;
 
-        public async void Interact() {
-            try {
-                await SceneController.LoadSceneWithFade(sceneToLoad, fader);
-            } catch (Exception e) {
-                throw; // TODO handle exception
-            }
+        public void Interact() {
+            _ = SceneController.LoadSceneWithFade(sceneToLoad, fader);
         }
         
         public bool IsAvailableForInteract() {

@@ -143,7 +143,7 @@ namespace Game.Gameplay {
                 await SceneController.UnloadSceneWithFade(SceneController.GetCurrentActiveScene(), fader);
             }
             else {
-                SceneController.UnloadScene(SceneController.GetCurrentActiveScene());
+                await SceneController.UnloadScene(SceneController.GetCurrentActiveScene());
             }
         }
 
